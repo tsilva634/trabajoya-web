@@ -1,8 +1,8 @@
 'use client';
 
-import { useEffect, useState, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
-import { Suspense } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 
 function PaymentSuccessContent() {
   const searchParams = useSearchParams();
