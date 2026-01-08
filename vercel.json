@@ -1,0 +1,13 @@
+{
+  "rewrites": [
+    {
+      "source": "/public/privacy-policy",
+      "destination": "/public/privacy"
+    },
+    {
+      "source": "/public/terms-of-service",
+      "destination": "/public/terms"
+    }
+  ]
+}
+
