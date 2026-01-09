@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function PaymentCancelPage() {
   const [countdown, setCountdown] = useState(3);
@@ -9,13 +9,19 @@ export default function PaymentCancelPage() {
 
   useEffect(() => {
     // Construir el deep link para la app móvil
-    const deepLink = 'trabajoya://payment/cancel';
+    // El deep link debe coincidir con la ruta esperada en la app
+    const deepLink = "trabajoya://payment/cancel";
 
     // Intentar redirigir a la app móvil
     const redirectToApp = () => {
       if (!redirected) {
         setRedirected(true);
-        window.location.href = deepLink;
+        try {
+          // Intentar abrir el deep link
+          window.location.href = deepLink;
+        } catch (error) {
+          console.error("Error al redirigir:", error);
+        }
       }
     };
 
@@ -65,7 +71,7 @@ export default function PaymentCancelPage() {
         </p>
         {countdown > 0 && (
           <p className="text-sm text-gray-500 mb-4">
-            Redirigiendo en {countdown} segundo{countdown !== 1 ? 's' : ''}...
+            Redirigiendo en {countdown} segundo{countdown !== 1 ? "s" : ""}...
           </p>
         )}
         <div className="space-y-3">
@@ -89,4 +95,3 @@ export default function PaymentCancelPage() {
     </div>
   );
 }
-
