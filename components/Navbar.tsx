@@ -26,16 +26,28 @@ export default function Navbar() {
               Inicio
             </Link>
             <Link
+              href="/soporte"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Soporte
+            </Link>
+            <Link
+              href="/contacto"
+              className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
+            >
+              Contacto
+            </Link>
+            <Link
               href="/public/terms"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
             >
-              Términos y Condiciones
+              Términos
             </Link>
             <Link
               href="/public/privacy"
               className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors"
             >
-              Política de Privacidad
+              Privacidad
             </Link>
             <a
               href="#download"
@@ -80,6 +92,20 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
               >
                 Inicio
+              </Link>
+              <Link
+                href="/soporte"
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                Soporte
+              </Link>
+              <Link
+                href="/contacto"
+                className="text-gray-700 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                onClick={() => setIsOpen(false)}
+              >
+                Contacto
               </Link>
               <Link
                 href="/public/terms"

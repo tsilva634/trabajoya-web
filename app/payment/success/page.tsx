@@ -13,14 +13,19 @@ function PaymentSuccessContent() {
   const token = searchParams?.get('token') || searchParams?.get('PayerID');
   const orderId = searchParams?.get('orderId') || token;
 
-  useEffect(() => {
-    // Construir el deep link para la app móvil
-    const deepLink = `trabajoya://payment/success${orderId ? `?orderId=${orderId}` : ''}${token ? `&token=${token}` : ''}`;
+  // Construir el deep link para la app móvil
+  const params = new URLSearchParams();
+  if (orderId) params.append('orderId', orderId);
+  if (token) params.append('token', token);
+  const queryString = params.toString();
+  const deepLink = `trabajoya://payment/success${queryString ? `?${queryString}` : ''}`;
 
+  useEffect(() => {
     // Intentar redirigir a la app móvil
     const redirectToApp = () => {
       if (!redirected) {
         setRedirected(true);
+        console.log('🔗 Redirigiendo a app con deep link:', deepLink);
         window.location.href = deepLink;
       }
     };
@@ -76,7 +81,7 @@ function PaymentSuccessContent() {
         )}
         <div className="space-y-3">
           <a
-            href={`trabajoya://payment/success${orderId ? `?orderId=${orderId}` : ''}${token ? `&token=${token}` : ''}`}
+            href={deepLink}
             className="block w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 transition-colors"
           >
             Abrir en la aplicación
