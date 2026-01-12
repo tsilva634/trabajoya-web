@@ -7,7 +7,11 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TrabajoYa - Conecta con tu próximo empleo",
-  description: "Plataforma de empleo que conecta postulantes con empresas. Descarga la app para Android e iOS.",
+  description:
+    "Plataforma de empleo que conecta postulantes con empresas. Descarga la app para Android e iOS.",
+  verification: {
+    google: "4jG9cxR077qkHSsn0QWKy-eIG_R7yyJk7mE2kjEekjE",
+  },
 };
 
 export default function RootLayout({
@@ -24,4 +28,3 @@ export default function RootLayout({
     </html>
   );
 }
-
