@@ -1,14 +1,16 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { fetchTerms } from '@/lib/api';
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import ReactMarkdown from "react-markdown";
+import { fetchTerms } from "@/lib/api";
 
 interface TermsData {
   id: string;
   type: string;
   version: string;
   fileUrl: string;
+  markdownContent?: string | null;
   description?: string;
   createdAt: string;
   updatedAt: string;
@@ -18,7 +20,7 @@ export default function TermsPage() {
   const [terms, setTerms] = useState<TermsData | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showPDF, setShowPDF] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   useEffect(() => {
     const loadTerms = async () => {
@@ -27,18 +29,18 @@ export default function TermsPage() {
         // Intentar obtener términos para POSTULANTE primero, si no existe, usar EMPRESA
         let termsData;
         try {
-          termsData = await fetchTerms('POSTULANTE');
+          termsData = await fetchTerms("POSTULANTE");
         } catch {
           try {
-            termsData = await fetchTerms('EMPRESA');
+            termsData = await fetchTerms("EMPRESA");
           } catch {
-            throw new Error('No se encontraron términos disponibles');
+            throw new Error("No se encontraron términos disponibles");
           }
         }
         setTerms(termsData);
-        setShowPDF(true);
+        setShowContent(true);
       } catch (err: any) {
-        setError(err.message || 'Error al cargar los términos y condiciones');
+        setError(err.message || "Error al cargar los términos y condiciones");
       } finally {
         setLoading(false);
       }
@@ -53,7 +55,9 @@ export default function TermsPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-            <p className="mt-4 text-gray-600">Cargando términos y condiciones...</p>
+            <p className="mt-4 text-gray-600">
+              Cargando términos y condiciones...
+            </p>
           </div>
         </div>
       </div>
@@ -66,12 +70,24 @@ export default function TermsPage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
             <div className="text-red-600 mb-4">
-              <svg className="h-12 w-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              <svg
+                className="h-12 w-12 mx-auto"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
               </svg>
             </div>
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Error</h2>
-            <p className="text-gray-600 mb-4">{error || 'No se pudieron cargar los términos y condiciones'}</p>
+            <p className="text-gray-600 mb-4">
+              {error || "No se pudieron cargar los términos y condiciones"}
+            </p>
             <Link href="/" className="text-blue-600 hover:underline">
               Volver al inicio
             </Link>
@@ -87,55 +103,101 @@ export default function TermsPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center mb-2">
-            <svg className="h-8 w-8 text-blue-600 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            <svg
+              className="h-8 w-8 text-blue-600 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
             </svg>
             <h1 className="text-4xl font-bold text-gray-900">
               Términos y Condiciones
             </h1>
           </div>
-          <p className="text-lg text-gray-600">
-            TrabajoYa - Versión {terms.version}
-          </p>
           {terms.description && (
             <p className="text-sm text-gray-500 mt-2">{terms.description}</p>
           )}
           <p className="text-sm text-gray-500 mt-1">
-            Última actualización: {new Date(terms.updatedAt).toLocaleDateString('es-ES', {
-              year: 'numeric',
-              month: 'long',
-              day: 'numeric'
+            Última actualización:{" "}
+            {new Date(terms.updatedAt).toLocaleDateString("es-ES", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
             })}
           </p>
         </div>
 
-        {/* PDF Viewer */}
-        {showPDF && terms.fileUrl && (
-          <div className="bg-white rounded-lg shadow-md p-4 mb-8">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-xl font-semibold">Documento</h2>
-              <a
-                href={terms.fileUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-2"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Descargar PDF
-              </a>
+        {/* Markdown Content */}
+        {showContent && (
+          <div className="bg-white rounded-lg shadow-md p-8 mb-8">
+            <div className="flex justify-between items-center mb-6">
+              <h2 className="text-xl font-semibold">Contenido</h2>
+              {terms.fileUrl && (
+                <a
+                  href={terms.fileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 text-sm flex items-center gap-2"
+                >
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                    />
+                  </svg>
+                  Descargar PDF
+                </a>
+              )}
             </div>
-            <div className="border rounded-lg overflow-hidden" style={{ height: '800px' }}>
-              <iframe
-                src={terms.fileUrl}
-                className="w-full h-full"
-                title="Términos y Condiciones"
-              />
-            </div>
+            {terms.markdownContent ? (
+              <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700">
+                <ReactMarkdown>{terms.markdownContent}</ReactMarkdown>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <p className="text-gray-600 mb-4">
+                  El contenido no está disponible en formato texto.
+                </p>
+                {terms.fileUrl && (
+                  <a
+                    href={terms.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"
+                      />
+                    </svg>
+                    Ver documento PDF
+                  </a>
+                )}
+              </div>
+            )}
           </div>
         )}
-
 
         {/* Footer */}
         <div className="text-center text-gray-600 border-t pt-8 mt-8">
@@ -149,4 +211,3 @@ export default function TermsPage() {
     </div>
   );
 }
-
