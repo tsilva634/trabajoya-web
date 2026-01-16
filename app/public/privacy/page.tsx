@@ -156,8 +156,38 @@ export default function PrivacyPolicyPage() {
               )}
             </div>
             {terms.markdownContent ? (
-              <div className="prose prose-lg max-w-none prose-headings:text-gray-900 prose-p:text-gray-700 prose-a:text-blue-600 prose-strong:text-gray-900 prose-ul:text-gray-700 prose-ol:text-gray-700">
-                <ReactMarkdown>{terms.markdownContent}</ReactMarkdown>
+              <div className="prose prose-lg max-w-none 
+                prose-headings:text-gray-900 prose-headings:font-bold prose-headings:mb-4 prose-headings:mt-8
+                prose-h1:text-3xl prose-h1:uppercase prose-h1:border-b prose-h1:pb-3 prose-h1:mb-6
+                prose-h2:text-2xl prose-h2:mt-8 prose-h2:mb-4
+                prose-h3:text-xl prose-h3:mt-6 prose-h3:mb-3
+                prose-p:text-gray-700 prose-p:mb-4 prose-p:leading-relaxed prose-p:text-base
+                prose-a:text-blue-600 prose-a:no-underline hover:prose-a:underline
+                prose-strong:text-gray-900 prose-strong:font-semibold
+                prose-ul:text-gray-700 prose-ul:my-4 prose-ul:pl-6
+                prose-ol:text-gray-700 prose-ol:my-4 prose-ol:pl-6
+                prose-li:mb-2 prose-li:leading-relaxed
+                prose-blockquote:border-l-4 prose-blockquote:border-blue-600 prose-blockquote:pl-4 prose-blockquote:italic prose-blockquote:text-gray-600
+                prose-hr:my-8 prose-hr:border-gray-300
+                [&>p]:mb-4
+                [&>h1]:first:mt-0
+                [&>h2]:first:mt-0
+                [&>h3]:first:mt-0">
+                <ReactMarkdown
+                  components={{
+                    p: ({ node, ...props }) => <p className="mb-4 leading-relaxed text-gray-700 text-base" {...props} />,
+                    h1: ({ node, ...props }) => <h1 className="text-3xl font-bold uppercase text-gray-900 mb-6 mt-8 pb-3 border-b border-gray-300 first:mt-0" {...props} />,
+                    h2: ({ node, ...props }) => <h2 className="text-2xl font-bold text-gray-900 mb-4 mt-8 first:mt-0" {...props} />,
+                    h3: ({ node, ...props }) => <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6 first:mt-0" {...props} />,
+                    ul: ({ node, ...props }) => <ul className="list-disc list-outside my-4 pl-6 space-y-2" {...props} />,
+                    ol: ({ node, ...props }) => <ol className="list-decimal list-outside my-4 pl-6 space-y-2" {...props} />,
+                    li: ({ node, ...props }) => <li className="mb-2 leading-relaxed text-gray-700" {...props} />,
+                    strong: ({ node, ...props }) => <strong className="font-semibold text-gray-900" {...props} />,
+                    a: ({ node, ...props }) => <a className="text-blue-600 hover:underline no-underline" {...props} />,
+                  }}
+                >
+                  {terms.markdownContent}
+                </ReactMarkdown>
               </div>
             ) : (
               <div className="text-center py-12">
