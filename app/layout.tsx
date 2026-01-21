@@ -9,6 +9,11 @@ export const metadata: Metadata = {
   title: "TrabajoYa - Conecta con tu próximo empleo",
   description:
     "Plataforma de empleo que conecta postulantes con empresas. Descarga la app para Android e iOS.",
+  icons: {
+    icon: "/icon-transparente.png",
+    shortcut: "/icon-transparente.png",
+    apple: "/icon-transparente.png",
+  },
   verification: {
     google: "4jG9cxR077qkHSsn0QWKy-eIG_R7yyJk7mE2kjEekjE",
   },
