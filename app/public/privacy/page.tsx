@@ -110,20 +110,11 @@ export default function PrivacyPolicyPage() {
               Política de Privacidad
             </h1>
           </div>
-          <p className="text-lg text-gray-600">
-            TrabajoYa - Versión {terms.version}
-          </p>
+          
           {terms.description && (
             <p className="text-sm text-gray-500 mt-2">{terms.description}</p>
           )}
-          <p className="text-sm text-gray-500 mt-1">
-            Última actualización:{" "}
-            {new Date(terms.updatedAt).toLocaleDateString("es-ES", {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            })}
-          </p>
+         
         </div>
 
         {/* Markdown Content */}
@@ -223,13 +214,81 @@ export default function PrivacyPolicyPage() {
         )}
 
         {/* Footer */}
-        <div className="text-center text-gray-600 border-t pt-8 mt-8">
-          <p className="font-semibold text-gray-800 mb-2">
-            <strong>TrabajoYa</strong> - Plataforma de empleo que conecta
-            postulantes con empresas
-          </p>
-          <p>© 2025 TrabajoYa. Todos los derechos reservados.</p>
+        <footer className="bg-blue-900 text-white py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div>
+              <h3 className="text-xl font-bold mb-4">TrabajoYa</h3>
+              <p className="text-gray-300">
+                Conectando talento con oportunidades.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Legal</h4>
+              <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/public/terms"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Términos y Condiciones
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    href="/public/privacy"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    Política de Privacidad
+                  </Link>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Contacto</h4>
+              <ul className="space-y-2">
+                <li>
+                  <a
+                    href="mailto:soporte@trabajoya.com"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    soporte@trabajoya.com
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="mailto:privacidad@trabajoya.com"
+                    className="text-gray-300 hover:text-white transition-colors"
+                  >
+                    privacidad@trabajoya.com
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-4">Descargar</h4>
+              <div className="space-y-2">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.trabajoya.app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white block transition-colors"
+                >
+                  Android
+                </a>
+                <a
+                  href="https://apps.apple.com/app/trabajoya/id123456789"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-white block transition-colors"
+                >
+                  iOS
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
+      </footer>
       </div>
     </div>
   );
