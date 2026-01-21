@@ -10,9 +10,9 @@ export const metadata: Metadata = {
   description:
     "Plataforma de empleo que conecta postulantes con empresas. Descarga la app para Android e iOS.",
   icons: {
-    icon: "/icon-transparente.png",
-    shortcut: "/icon-transparente.png",
-    apple: "/icon-transparente.png",
+    icon: "/icon-blanco.png",
+    shortcut: "/icon-blanco.png",
+    apple: "/icon-blanco.png",
   },
   verification: {
     google: "4jG9cxR077qkHSsn0QWKy-eIG_R7yyJk7mE2kjEekjE",
