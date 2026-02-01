@@ -1,16 +1,30 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
-import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
-import { Suspense, useState } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
 
 function ResetPasswordContent() {
   const searchParams = useSearchParams();
-  const router = useRouter();
   const token = searchParams?.get('token');
+
+  // Prevenir navegación del navegador
+  useEffect(() => {
+    const handlePopState = (e: PopStateEvent) => {
+      // Prevenir que el usuario navegue hacia atrás
+      window.history.pushState(null, '', window.location.href);
+    };
+
+    // Agregar estado al historial para poder interceptar el botón atrás
+    window.history.pushState(null, '', window.location.href);
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -84,24 +98,24 @@ function ResetPasswordContent() {
 
   if (!token) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white px-6 py-8">
+      <div className="min-h-screen flex items-center justify-center bg-white px-4 py-6">
         <div className="max-w-md w-full">
           {/* Logo TrabajoYa */}
-          <div className="mb-8 flex justify-center">
+          <div className="mb-6 flex justify-center">
             <Image
               src="/logo.png"
               alt="TrabajoYa"
-              width={120}
-              height={120}
-              className="h-24 w-24"
+              width={80}
+              height={80}
+              className="h-16 w-16"
               priority
             />
           </div>
 
           <div className="text-center">
-            <div className="mb-4 mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100">
+            <div className="mb-3 mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
               <svg
-                className="h-8 w-8 text-red-600"
+                className="h-6 w-6 text-red-600"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -114,18 +128,12 @@ function ResetPasswordContent() {
                 />
               </svg>
             </div>
-            <h1 className="mb-2 text-left text-2xl font-semibold text-gray-800">
+            <h1 className="mb-2 text-left text-xl font-semibold text-gray-800">
               Token Inválido
             </h1>
-            <p className="mb-6 text-left text-sm text-gray-600">
-              El enlace de recuperación no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación.
+            <p className="mb-4 text-left text-sm text-gray-600">
+              El enlace de recuperación no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación desde la aplicación.
             </p>
-            <Link
-              href="/"
-              className="inline-block w-full rounded-full bg-[#1e3a8a] py-6 text-center text-base font-semibold text-white shadow-lg hover:bg-[#1e40af] transition-colors"
-            >
-              Volver al inicio
-            </Link>
           </div>
         </div>
       </div>
@@ -134,24 +142,24 @@ function ResetPasswordContent() {
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white px-6 py-8">
+      <div className="min-h-screen flex items-center justify-center bg-white px-4 py-6">
         <div className="max-w-md w-full">
           {/* Logo TrabajoYa */}
-          <div className="mb-8 flex justify-center">
+          <div className="mb-6 flex justify-center">
             <Image
               src="/logo.png"
               alt="TrabajoYa"
-              width={120}
-              height={120}
-              className="h-24 w-24"
+              width={80}
+              height={80}
+              className="h-16 w-16"
               priority
             />
           </div>
 
           <div className="text-center">
-            <div className="mb-4 mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-green-100">
+            <div className="mb-3 mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
               <svg
-                className="h-10 w-10 text-[#2eb44f]"
+                className="h-8 w-8 text-[#2eb44f]"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -164,15 +172,15 @@ function ResetPasswordContent() {
                 />
               </svg>
             </div>
-            <h1 className="mb-2 text-left text-2xl font-semibold text-gray-800">
+            <h1 className="mb-2 text-left text-xl font-semibold text-gray-800">
               ¡Contraseña Restablecida!
             </h1>
-            <p className="mb-6 text-left text-sm text-gray-600">
+            <p className="mb-4 text-left text-sm text-gray-600">
               Tu contraseña ha sido restablecida exitosamente. Serás redirigido al login en unos segundos.
             </p>
             <a
               href="trabajoya://login"
-              className="inline-block w-full rounded-full bg-[#1e3a8a] py-6 text-center text-base font-semibold text-white shadow-lg hover:bg-[#1e40af] transition-colors"
+              className="inline-block w-full rounded-full bg-[#1e3a8a] py-4 text-center text-sm font-semibold text-white shadow-lg hover:bg-[#1e40af] transition-colors"
             >
               Ir al login
             </a>
@@ -183,33 +191,33 @@ function ResetPasswordContent() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-6 py-8">
+    <div className="min-h-screen flex items-center justify-center bg-white px-4 py-6">
       <div className="max-w-md w-full">
         {/* Logo TrabajoYa */}
-        <div className="mb-8 flex justify-center">
+        <div className="mb-6 flex justify-center">
           <Image
             src="/logo.png"
             alt="TrabajoYa"
-            width={120}
-            height={120}
-            className="h-24 w-24"
+            width={80}
+            height={80}
+            className="h-16 w-16"
             priority
           />
         </div>
 
         {/* Título */}
-        <h1 className="mb-6 text-left text-2xl font-semibold text-gray-800">
+        <h1 className="mb-4 text-left text-xl font-semibold text-gray-800">
           Restablecer Contraseña
         </h1>
 
         {/* Descripción */}
-        <p className="mb-6 text-left text-sm text-gray-600">
+        <p className="mb-4 text-left text-sm text-gray-600">
           Ingresa tu nueva contraseña para completar el proceso
         </p>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3">
           {error && (
-            <div className="mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <div className="mb-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
               {error}
             </div>
           )}
@@ -221,7 +229,7 @@ function ResetPasswordContent() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full rounded-lg border px-4 py-4 pr-12 text-base text-gray-800 shadow-sm placeholder:text-gray-400 ${
+              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${
                 error && error.includes('contraseña') && !error.includes('coinciden')
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -233,15 +241,15 @@ function ResetPasswordContent() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+              className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
               disabled={isLoading}
             >
               {showPassword ? (
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
                 </svg>
               ) : (
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
@@ -261,7 +269,7 @@ function ResetPasswordContent() {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`w-full rounded-lg border px-4 py-4 pr-12 text-base text-gray-800 shadow-sm placeholder:text-gray-400 ${
+              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${
                 error && error.includes('coinciden')
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -273,15 +281,15 @@ function ResetPasswordContent() {
             <button
               type="button"
               onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-4 top-4 text-gray-500 hover:text-gray-700"
+              className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
               disabled={isLoading}
             >
               {showConfirmPassword ? (
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
                 </svg>
               ) : (
-                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                 </svg>
@@ -293,11 +301,11 @@ function ResetPasswordContent() {
           <button
             type="submit"
             disabled={!password || !confirmPassword || isLoading}
-            className="mb-8 w-full rounded-full bg-[#1e3a8a] py-6 text-base font-semibold text-white shadow-lg disabled:opacity-50 hover:bg-[#1e40af] transition-colors"
+            className="mb-4 w-full rounded-full bg-[#1e3a8a] py-4 text-sm font-semibold text-white shadow-lg disabled:opacity-50 hover:bg-[#1e40af] transition-colors"
           >
             {isLoading ? (
               <span className="flex items-center justify-center">
-                <svg className="mr-3 h-5 w-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <svg className="mr-2 h-4 w-4 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                   <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                   <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                 </svg>
@@ -308,15 +316,6 @@ function ResetPasswordContent() {
             )}
           </button>
 
-          {/* Link de volver */}
-          <div className="text-center">
-            <Link
-              href="/"
-              className="text-base font-semibold text-[#2eb44f] hover:text-[#25a042] transition-colors"
-            >
-              Volver al inicio
-            </Link>
-          </div>
         </form>
       </div>
     </div>
