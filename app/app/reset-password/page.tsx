@@ -200,7 +200,7 @@ function ResetPasswordContent() {
             alt="TrabajoYa"
             width={80}
             height={80}
-            className="h-16 w-16"
+            className="h-full w-full"
             priority
           />
         </div>
