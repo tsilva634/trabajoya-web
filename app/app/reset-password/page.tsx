@@ -71,10 +71,10 @@ function ResetPasswordContent() {
       }
 
       setSuccess(true);
-      // Redirigir al inicio después de 3 segundos
+      // Redirigir al login de la app después de 2 segundos
       setTimeout(() => {
-        router.push('/');
-      }, 3000);
+        window.location.href = 'trabajoya://login';
+      }, 2000);
     } catch (err: any) {
       setError(err.message || 'Error al restablecer la contraseña. El token puede haber expirado.');
     } finally {
@@ -93,7 +93,7 @@ function ResetPasswordContent() {
               alt="TrabajoYa"
               width={120}
               height={120}
-              className="h-auto w-1/3"
+              className="h-24 w-24"
               priority
             />
           </div>
@@ -143,7 +143,7 @@ function ResetPasswordContent() {
               alt="TrabajoYa"
               width={120}
               height={120}
-              className="h-auto w-1/3"
+              className="h-24 w-24"
               priority
             />
           </div>
@@ -168,14 +168,14 @@ function ResetPasswordContent() {
               ¡Contraseña Restablecida!
             </h1>
             <p className="mb-6 text-left text-sm text-gray-600">
-              Tu contraseña ha sido restablecida exitosamente. Serás redirigido al inicio en unos segundos.
+              Tu contraseña ha sido restablecida exitosamente. Serás redirigido al login en unos segundos.
             </p>
-            <Link
-              href="/"
+            <a
+              href="trabajoya://login"
               className="inline-block w-full rounded-full bg-[#1e3a8a] py-6 text-center text-base font-semibold text-white shadow-lg hover:bg-[#1e40af] transition-colors"
             >
-              Ir al inicio
-            </Link>
+              Ir al login
+            </a>
           </div>
         </div>
       </div>
@@ -192,7 +192,7 @@ function ResetPasswordContent() {
             alt="TrabajoYa"
             width={120}
             height={120}
-            className="h-auto w-1/3"
+            className="h-24 w-24"
             priority
           />
         </div>
@@ -221,7 +221,7 @@ function ResetPasswordContent() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full rounded-lg border px-4 py-4 pr-12 text-base shadow-sm placeholder:text-gray-400 ${
+              className={`w-full rounded-lg border px-4 py-4 pr-12 text-base text-gray-800 shadow-sm placeholder:text-gray-400 ${
                 error && error.includes('contraseña') && !error.includes('coinciden')
                   ? 'border-red-500'
                   : 'border-gray-300'
@@ -261,7 +261,7 @@ function ResetPasswordContent() {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`w-full rounded-lg border px-4 py-4 pr-12 text-base shadow-sm placeholder:text-gray-400 ${
+              className={`w-full rounded-lg border px-4 py-4 pr-12 text-base text-gray-800 shadow-sm placeholder:text-gray-400 ${
                 error && error.includes('coinciden')
                   ? 'border-red-500'
                   : 'border-gray-300'
