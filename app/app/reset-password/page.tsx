@@ -105,9 +105,9 @@ function ResetPasswordContent() {
             <Image
               src="/logo.png"
               alt="TrabajoYa"
-              width={80}
-              height={80}
-              className="h-16 w-16"
+              width={128}
+              height={128}
+              className="w-32 h-32 object-contain"
               priority
             />
           </div>
@@ -149,9 +149,9 @@ function ResetPasswordContent() {
             <Image
               src="/logo.png"
               alt="TrabajoYa"
-              width={80}
-              height={80}
-              className="h-16 w-16"
+              width={128}
+              height={128}
+              className="w-32 h-32 object-contain"
               priority
             />
           </div>
@@ -198,9 +198,9 @@ function ResetPasswordContent() {
           <Image
             src="/logo.png"
             alt="TrabajoYa"
-            width={80}
-            height={80}
-            className="w-32 h-32"
+            width={128}
+            height={128}
+            className="w-32 h-32 object-contain"
             priority
           />
         </div>
