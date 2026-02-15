@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Contacto - TrabajoYa",
+  title: "Contacto - Soporte y Atención al Cliente",
   description:
-    "Contactá al equipo de TrabajoYa. Envianos tu consulta, sugerencia o reporte un problema. Respondemos en 24-48 horas hábiles. Email: soporte@trabajoya.com",
+    "Contactá al equipo de TrabajoYa. Envianos tu consulta, sugerencia o reporte de problema. Atención al cliente por email. Respondemos en 24-48 horas hábiles. soporte@trabajoya.com",
   alternates: {
     canonical: "https://web.trabajo-ya.com/contacto",
   },
   openGraph: {
-    title: "Contacto - TrabajoYa",
+    title: "Contacto - Soporte TrabajoYa",
     description:
-      "Contactá al equipo de soporte de TrabajoYa. Estamos disponibles para ayudarte con cualquier consulta.",
+      "Contactá al equipo de soporte de TrabajoYa. Estamos disponibles para ayudarte con cualquier consulta sobre empleo y uso de la plataforma.",
     url: "https://web.trabajo-ya.com/contacto",
+    type: "website",
   },
 };
 
@@ -22,4 +23,3 @@ export default function ContactoLayout({
 }) {
   return children;
 }
-

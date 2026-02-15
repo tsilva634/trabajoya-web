@@ -3,6 +3,71 @@
 import Link from 'next/link';
 import { useState } from 'react';
 
+function ContactJsonLd() {
+  const contactPageSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contacto TrabajoYa",
+    description:
+      "Página de contacto de TrabajoYa. Envianos tu consulta sobre empleo, soporte técnico o sugerencias.",
+    url: "https://web.trabajo-ya.com/contacto",
+    mainEntity: {
+      "@type": "Organization",
+      name: "TrabajoYa",
+      url: "https://web.trabajo-ya.com",
+      email: "soporte@trabajoya.com",
+      contactPoint: [
+        {
+          "@type": "ContactPoint",
+          email: "soporte@trabajoya.com",
+          contactType: "customer service",
+          availableLanguage: ["Spanish", "English", "Portuguese"],
+          areaServed: "AR",
+        },
+        {
+          "@type": "ContactPoint",
+          email: "privacidad@trabajoya.com",
+          contactType: "privacy",
+          availableLanguage: ["Spanish"],
+          areaServed: "AR",
+        },
+      ],
+    },
+  };
+
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Inicio",
+        item: "https://web.trabajo-ya.com",
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contacto",
+        item: "https://web.trabajo-ya.com/contacto",
+      },
+    ],
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(contactPageSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+    </>
+  );
+}
+
 export default function ContactoPage() {
   const [formData, setFormData] = useState({
     nombre: '',
@@ -109,22 +174,37 @@ export default function ContactoPage() {
   }
 
   return (
+    <>
+    <ContactJsonLd />
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-3xl mx-auto">
+        {/* Breadcrumb */}
+        <nav aria-label="Breadcrumb" className="mb-8">
+          <ol className="flex items-center space-x-2 text-sm text-gray-500">
+            <li>
+              <Link href="/" className="hover:text-blue-600 transition-colors">Inicio</Link>
+            </li>
+            <li aria-hidden="true">/</li>
+            <li>
+              <span className="text-gray-900 font-medium">Contacto</span>
+            </li>
+          </ol>
+        </nav>
+
         {/* Header */}
-        <div className="text-center mb-12">
+        <header className="text-center mb-12">
           <div className="flex items-center justify-center mb-4">
-            <svg className="h-12 w-12 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="h-12 w-12 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
             </svg>
             <h1 className="text-4xl font-bold text-gray-900">
-              Contáctanos
+              Contactá al equipo de TrabajoYa
             </h1>
           </div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            ¿Tienes alguna pregunta, sugerencia o necesitas ayuda? Estamos aquí para asistirte. Completa el formulario y nos pondremos en contacto contigo lo antes posible.
+            ¿Tenés alguna pregunta sobre empleo, sugerencia o necesitás ayuda con la plataforma? Estamos para asistirte. Completá el formulario y nos pondremos en contacto lo antes posible.
           </p>
-        </div>
+        </header>
 
         <div className="grid md:grid-cols-3 gap-6 mb-8">
           {/* Email */}
@@ -304,6 +384,7 @@ export default function ContactoPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
