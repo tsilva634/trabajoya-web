@@ -30,18 +30,18 @@ export default function Navbar() {
             >
               Cómo funciona
             </Link>
-            <a
-              href="https://empresas.trabajo-ya.com"
-              className="text-blue-900 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium transition-colors"
-            >
-              Empresas
-            </a>
             <Link
               href="/soporte"
               className="text-blue-900 hover:text-blue-700 px-3 py-2 rounded-md text-sm font-medium transition-colors"
             >
               Ayuda
             </Link>
+            <a
+              href="https://empresas.trabajo-ya.com"
+              className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
+            >
+              Empresas
+            </a>
           </div>
 
           {/* Mobile menu button */}
