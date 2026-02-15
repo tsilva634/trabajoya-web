@@ -29,6 +29,9 @@ export const metadata: Metadata = {
   keywords: [
     "trabajo",
     "empleo",
+    "trabajo ya",
+    "trabajo ya empresas",
+    "trabajo ya app",
     "buscar trabajo",
     "buscar empleo",
     "ofertas laborales",
