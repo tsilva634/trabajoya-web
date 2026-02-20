@@ -87,7 +87,7 @@ function ResetPasswordContent() {
       setSuccess(true);
       // Redirigir al login de la app después de 2 segundos
       setTimeout(() => {
-        window.location.href = 'trabajoya://login';
+        window.location.href = 'trabajoya://auth/login';
       }, 2000);
     } catch (err: any) {
       setError(err.message || 'Error al restablecer la contraseña. El token puede haber expirado.');
@@ -179,7 +179,7 @@ function ResetPasswordContent() {
               Tu contraseña ha sido restablecida exitosamente. Serás redirigido al login en unos segundos.
             </p>
             <a
-              href="trabajoya://login"
+              href="trabajoya://auth/login"
               className="inline-block w-full rounded-full bg-[#1e3a8a] py-4 text-center text-sm font-semibold text-white shadow-lg hover:bg-[#1e40af] transition-colors"
             >
               Ir al login
@@ -229,11 +229,10 @@ function ResetPasswordContent() {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${
-                error && error.includes('contraseña') && !error.includes('coinciden')
-                  ? 'border-red-500'
-                  : 'border-gray-300'
-              } bg-white`}
+              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${error && error.includes('contraseña') && !error.includes('coinciden')
+                ? 'border-red-500'
+                : 'border-gray-300'
+                } bg-white`}
               placeholder="Nueva contraseña"
               required
               disabled={isLoading}
@@ -269,11 +268,10 @@ function ResetPasswordContent() {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${
-                error && error.includes('coinciden')
-                  ? 'border-red-500'
-                  : 'border-gray-300'
-              } bg-white`}
+              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${error && error.includes('coinciden')
+                ? 'border-red-500'
+                : 'border-gray-300'
+                } bg-white`}
               placeholder="Confirmar contraseña"
               required
               disabled={isLoading}
