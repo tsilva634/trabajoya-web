@@ -13,7 +13,7 @@ function VerifyEmailContent() {
   const token = searchParams?.get('token');
 
   // Construir el deep link para la app móvil
-  const deepLink = token 
+  const deepLink = token
     ? `trabajoya://verify-email?token=${encodeURIComponent(token)}`
     : 'trabajoya://verify-email';
 
@@ -112,33 +112,6 @@ export default function VerifyEmailPage() {
     </Suspense>
   );
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
