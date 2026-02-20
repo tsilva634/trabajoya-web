@@ -126,7 +126,7 @@ export default function TermsPage() {
             <div className="mb-6">
               <span className="text-sm text-gray-500 font-medium">Aviso legal</span>
             </div>
-            
+
             <h2 className="text-2xl font-bold text-gray-900 mb-6 uppercase tracking-wide">
               TÉRMINOS Y CONDICIONES DE USO
             </h2>
@@ -293,10 +293,10 @@ export default function TermsPage() {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="mailto:soporte@trabajoya.com"
+                    href="mailto:soporte@trabajo-ya.com"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    soporte@trabajoya.com
+                    soporte@trabajo-ya.com
                   </a>
                 </li>
                 <li>

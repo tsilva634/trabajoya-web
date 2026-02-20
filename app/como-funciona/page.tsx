@@ -229,11 +229,10 @@ export default function ComoFuncionaPage() {
                 {postulantesSteps.map((step, index) => (
                   <div
                     key={step.title}
-                    className={`flex items-start gap-5 ${
-                      index !== postulantesSteps.length - 1
+                    className={`flex items-start gap-5 ${index !== postulantesSteps.length - 1
                         ? "pb-6 border-b border-gray-100"
                         : ""
-                    }`}
+                      }`}
                   >
                     <div className="flex-shrink-0 w-14 h-14 bg-[#DAE6FD] rounded-xl flex items-center justify-center">
                       <step.icon className="w-7 h-7 text-[#2561EA]" />
@@ -273,11 +272,10 @@ export default function ComoFuncionaPage() {
                 {empresasSteps.map((step, index) => (
                   <div
                     key={step.title}
-                    className={`flex items-start gap-5 ${
-                      index !== empresasSteps.length - 1
+                    className={`flex items-start gap-5 ${index !== empresasSteps.length - 1
                         ? "pb-6 border-b border-gray-100"
                         : ""
-                    }`}
+                      }`}
                   >
                     <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center">
                       <step.icon className="w-7 h-7 text-green-600" />
@@ -403,10 +401,10 @@ export default function ComoFuncionaPage() {
                 <ul className="space-y-2 text-sm text-gray-400">
                   <li>
                     <a
-                      href="mailto:soporte@trabajoya.com"
+                      href="mailto:soporte@trabajo-ya.com"
                       className="hover:text-white transition-colors"
                     >
-                      soporte@trabajoya.com
+                      soporte@trabajo-ya.com
                     </a>
                   </li>
                 </ul>

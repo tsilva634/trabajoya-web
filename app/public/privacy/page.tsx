@@ -353,10 +353,10 @@ export default function PrivacyPolicyPage() {
               <ul className="space-y-2">
                 <li>
                   <a
-                    href="mailto:soporte@trabajoya.com"
+                    href="mailto:soporte@trabajo-ya.com"
                     className="text-gray-300 hover:text-white transition-colors"
                   >
-                    soporte@trabajoya.com
+                    soporte@trabajo-ya.com
                   </a>
                 </li>
                 <li>

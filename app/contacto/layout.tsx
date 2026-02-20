@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contacto - Soporte y Atención al Cliente",
   description:
-    "Contactá al equipo de TrabajoYa. Envianos tu consulta, sugerencia o reporte de problema. Atención al cliente por email. Respondemos en 24-48 horas hábiles. soporte@trabajoya.com",
+    "Contactá al equipo de TrabajoYa. Envianos tu consulta, sugerencia o reporte de problema. Atención al cliente por email. Respondemos en 24-48 horas hábiles. soporte@trabajo-ya.com",
   alternates: {
     canonical: "https://web.trabajo-ya.com/contacto",
   },

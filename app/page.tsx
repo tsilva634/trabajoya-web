@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+import LogoFooter from "@/components/Logo";
 
 export const metadata: Metadata = {
   title:
@@ -49,7 +50,7 @@ function JsonLd() {
     contactPoint: [
       {
         "@type": "ContactPoint",
-        email: "soporte@trabajoya.com",
+        email: "soporte@trabajo-ya.com",
         contactType: "customer service",
         availableLanguage: ["Spanish", "English", "Portuguese"],
         areaServed: "AR",
@@ -674,7 +675,10 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="grid md:grid-cols-4 gap-8">
               <div>
-                <h3 className="text-xl font-bold mb-4">TrabajoYa</h3>
+                <div className="w-max bg-white px-4 py-2 rounded-lg mb-4">
+                  <LogoFooter width={150} height={50} />
+
+                </div>
                 <p className="text-gray-300">
                   La plataforma de empleo #1 en Argentina. Conectamos
                   talento con oportunidades laborales en todo el país.
@@ -743,18 +747,18 @@ export default function Home() {
                 <ul className="space-y-2">
                   <li>
                     <a
-                      href="mailto:soporte@trabajoya.com"
+                      href="mailto:soporte@trabajo-ya.com"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
-                      soporte@trabajoya.com
+                      soporte@trabajo-ya.com
                     </a>
                   </li>
                   <li>
                     <a
-                      href="mailto:privacidad@trabajoya.com"
+                      href="mailto:privacidad@trabajo-ya.com"
                       className="text-gray-300 hover:text-white transition-colors"
                     >
-                      privacidad@trabajoya.com
+                      privacidad@trabajo-ya.com
                     </a>
                   </li>
                 </ul>

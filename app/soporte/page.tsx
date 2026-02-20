@@ -169,7 +169,7 @@ export default function SoportePage() {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
                   <a
-                    href="mailto:soporte@trabajoya.com"
+                    href="mailto:soporte@trabajo-ya.com"
                     className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
                   >
                     <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
@@ -190,8 +190,8 @@ export default function SoportePage() {
                 <div className="mt-4 pt-4 border-t border-gray-200">
                   <p className="text-sm text-gray-600">
                     <strong>Email de soporte:</strong>{' '}
-                    <a href="mailto:soporte@trabajoya.com" className="text-blue-600 hover:underline">
-                      soporte@trabajoya.com
+                    <a href="mailto:soporte@trabajo-ya.com" className="text-blue-600 hover:underline">
+                      soporte@trabajo-ya.com
                     </a>
                   </p>
                   <p className="text-sm text-gray-600 mt-1">
@@ -206,7 +206,7 @@ export default function SoportePage() {
           <section aria-label="Preguntas frecuentes">
             <div className="bg-white rounded-lg shadow-md p-6 mb-8">
               <h2 className="text-2xl font-semibold text-gray-900 mb-6">Preguntas Frecuentes sobre TrabajoYa</h2>
-              
+
               <div className="space-y-4">
                 {faqs.map((faq) => (
                   <div
@@ -222,9 +222,8 @@ export default function SoportePage() {
                       >
                         <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
                         <svg
-                          className={`h-5 w-5 text-gray-500 flex-shrink-0 transition-transform ${
-                            openFaq === faq.id ? 'transform rotate-180' : ''
-                          }`}
+                          className={`h-5 w-5 text-gray-500 flex-shrink-0 transition-transform ${openFaq === faq.id ? 'transform rotate-180' : ''
+                            }`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
