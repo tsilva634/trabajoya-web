@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
-import LogoFooter from "@/components/Logo";
 
 export const metadata: Metadata = {
   title:
@@ -274,7 +273,7 @@ export default function Home() {
                   </div>
                 </a>
                 <a
-                  href="https://apps.apple.com/app/trabajoya/id123456789"
+                  href="https://apps.apple.com/us/app/trabajo-ya/id6757190754"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Descargar TrabajoYa en App Store"
@@ -670,127 +669,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-blue-900 text-white py-12 mt-20">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="grid md:grid-cols-4 gap-8">
-              <div>
-                <div className="w-max bg-white px-4 py-2 rounded-lg mb-4">
-                  <LogoFooter width={150} height={50} />
-
-                </div>
-                <p className="text-gray-300">
-                  La plataforma de empleo #1 en Argentina. Conectamos
-                  talento con oportunidades laborales en todo el país.
-                </p>
-              </div>
-              <nav aria-label="Páginas principales">
-                <h4 className="font-semibold mb-4">Navegación</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href="/"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      Inicio
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/como-funciona"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      Cómo funciona
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/soporte"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      Centro de ayuda
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contacto"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      Contacto
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <nav aria-label="Enlaces legales">
-                <h4 className="font-semibold mb-4">Legal</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <Link
-                      href="/public/terms"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      Términos y Condiciones
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/public/privacy"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      Política de Privacidad
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <div>
-                <h4 className="font-semibold mb-4">Contacto</h4>
-                <ul className="space-y-2">
-                  <li>
-                    <a
-                      href="mailto:soporte@trabajo-ya.com"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      soporte@trabajo-ya.com
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="mailto:privacidad@trabajo-ya.com"
-                      className="text-gray-300 hover:text-white transition-colors"
-                    >
-                      privacidad@trabajo-ya.com
-                    </a>
-                  </li>
-                </ul>
-                <h4 className="font-semibold mb-2 mt-4">Descargar</h4>
-                <div className="space-y-2">
-                  <a
-                    href="https://play.google.com/store/apps/details?id=com.trabajoya.app"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white block transition-colors"
-                  >
-                    Android (Google Play)
-                  </a>
-                  <a
-                    href="https://apps.apple.com/app/trabajoya/id123456789"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-gray-300 hover:text-white block transition-colors"
-                  >
-                    iOS (App Store)
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="border-t border-blue-800 mt-8 pt-8 text-center text-sm text-gray-400">
-              <p>
-                © {new Date().getFullYear()} TrabajoYa. Todos los derechos
-                reservados. Plataforma de empleo en Argentina.
-              </p>
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );

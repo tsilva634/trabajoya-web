@@ -230,8 +230,8 @@ export default function ComoFuncionaPage() {
                   <div
                     key={step.title}
                     className={`flex items-start gap-5 ${index !== postulantesSteps.length - 1
-                        ? "pb-6 border-b border-gray-100"
-                        : ""
+                      ? "pb-6 border-b border-gray-100"
+                      : ""
                       }`}
                   >
                     <div className="flex-shrink-0 w-14 h-14 bg-[#DAE6FD] rounded-xl flex items-center justify-center">
@@ -273,8 +273,8 @@ export default function ComoFuncionaPage() {
                   <div
                     key={step.title}
                     className={`flex items-start gap-5 ${index !== empresasSteps.length - 1
-                        ? "pb-6 border-b border-gray-100"
-                        : ""
+                      ? "pb-6 border-b border-gray-100"
+                      : ""
                       }`}
                   >
                     <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-green-50 to-green-100 rounded-xl flex items-center justify-center">
@@ -324,98 +324,6 @@ export default function ComoFuncionaPage() {
           </div>
         </section>
 
-        {/* Footer */}
-        <footer className="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 mt-8">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-              <div>
-                <h3 className="text-lg font-bold mb-4">
-                  <span className="text-[#4A8CDB]">Trabajo</span>
-                  <span className="text-[#18A338]">Ya</span>
-                </h3>
-                <p className="text-gray-400 text-sm">
-                  Conectando talento con oportunidades laborales en
-                  Argentina.
-                </p>
-              </div>
-              <nav aria-label="Navegación del pie de página">
-                <h4 className="font-semibold mb-4">Navegación</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>
-                    <Link
-                      href="/"
-                      className="hover:text-white transition-colors"
-                    >
-                      Inicio
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/como-funciona"
-                      className="hover:text-white transition-colors"
-                    >
-                      Cómo funciona
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/soporte"
-                      className="hover:text-white transition-colors"
-                    >
-                      Centro de Ayuda
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/contacto"
-                      className="hover:text-white transition-colors"
-                    >
-                      Contacto
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <nav aria-label="Enlaces legales">
-                <h4 className="font-semibold mb-4">Legal</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>
-                    <Link
-                      href="/public/terms"
-                      className="hover:text-white transition-colors"
-                    >
-                      Términos y Condiciones
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/public/privacy"
-                      className="hover:text-white transition-colors"
-                    >
-                      Política de Privacidad
-                    </Link>
-                  </li>
-                </ul>
-              </nav>
-              <div>
-                <h4 className="font-semibold mb-4">Contacto</h4>
-                <ul className="space-y-2 text-sm text-gray-400">
-                  <li>
-                    <a
-                      href="mailto:soporte@trabajo-ya.com"
-                      className="hover:text-white transition-colors"
-                    >
-                      soporte@trabajo-ya.com
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div className="border-t border-gray-800 pt-8 text-center text-sm text-gray-500">
-              © {new Date().getFullYear()} TrabajoYa. Todos los derechos
-              reservados.
-            </div>
-          </div>
-        </footer>
       </div>
     </>
   );
