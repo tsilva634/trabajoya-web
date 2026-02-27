@@ -113,7 +113,7 @@ export default function Footer() {
                 <span className="sr-only">Android (Google Play)</span>
               </a>
               <a
-                href="https://apps.apple.com/app/trabajoya/id123456789"
+                href="https://apps.apple.com/us/app/trabajo-ya/id6757190754"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Descargar en App Store"
