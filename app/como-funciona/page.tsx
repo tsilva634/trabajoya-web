@@ -116,7 +116,7 @@ const postulantesSteps = [
     icon: UserPlus,
     title: "Creá tu perfil profesional",
     description:
-      "Cargá tu CV y curriculum vitae, completá tus habilidades, experiencia laboral y educación para destacar ante las empresas que buscan talento.",
+      "Cargá tu CV y currículum vitae, completá tus habilidades, experiencia laboral y educación para destacar ante las empresas que buscan talento.",
   },
   {
     icon: Search,

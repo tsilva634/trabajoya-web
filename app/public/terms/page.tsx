@@ -225,7 +225,7 @@ export default function TermsPage() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Aceptación de términos</h3>
             <p className="text-sm text-gray-600">
-              Debes registrarte y aceptar los términos para acceder y utilizar nuestros servicios
+              Debés registrarte y aceptar los términos para acceder y utilizar nuestros servicios
             </p>
           </div>
 

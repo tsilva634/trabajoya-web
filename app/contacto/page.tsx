@@ -9,7 +9,7 @@ function ContactJsonLd() {
     "@type": "ContactPage",
     name: "Contacto TrabajoYa",
     description:
-      "Página de contacto de TrabajoYa. Envianos tu consulta sobre empleo, soporte técnico o sugerencias.",
+      "Página de contacto de TrabajoYa. Envíanos tu consulta sobre empleo, soporte técnico o sugerencias.",
     url: "https://web.trabajo-ya.com/contacto",
     mainEntity: {
       "@type": "Organization",

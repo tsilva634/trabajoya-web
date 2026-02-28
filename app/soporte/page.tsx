@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     id: 8,
-    question: '¿Qué pago si olvidé mi contraseña?',
+    question: '¿Qué hago si olvidé mi contraseña?',
     answer: 'En la pantalla de inicio de sesión, haz clic en "¿Olvidaste tu contraseña?". Ingresa tu email y recibirás un enlace para restablecer tu contraseña de forma segura. El proceso es gratuito.'
   },
   {
@@ -137,7 +137,7 @@ export default function SoportePage() {
               </h1>
             </div>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Encontrá respuestas a las preguntas más frecuentes sobre cómo buscar trabajo, publicar ofertas de empleo y usar TrabajoYa. Si no encontrás lo que buscás, contactanos directamente.
+              Encontrá respuestas a las preguntas más frecuentes sobre cómo buscar trabajo, publicar ofertas de empleo y usar TrabajoYa. Si no encontrás lo que buscás, contactános directamente.
             </p>
           </header>
 
@@ -275,7 +275,7 @@ export default function SoportePage() {
                   </svg>
                   <div>
                     <div className="font-semibold text-gray-900">Contacto</div>
-                    <div className="text-sm text-gray-600">Envianos tu consulta directamente</div>
+                    <div className="text-sm text-gray-600">Envíanos tu consulta directamente</div>
                   </div>
                 </Link>
                 <Link

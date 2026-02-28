@@ -297,7 +297,7 @@ export default function PrivacyPolicyPage() {
             </div>
             <h3 className="font-semibold text-gray-900 mb-2">Control de información</h3>
             <p className="text-sm text-gray-600">
-              Tienes derecho a acceder, modificar o eliminar tu información personal en cualquier momento
+              Tenés derecho a acceder, modificar o eliminar tu información personal en cualquier momento
             </p>
           </div>
 

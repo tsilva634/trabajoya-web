@@ -379,7 +379,7 @@ export default function Home() {
                   Creá tu perfil profesional
                 </h3>
                 <p className="text-gray-700 text-base lg:text-lg leading-relaxed">
-                  Creá tu perfil, subí tu CV y curriculum vitae, y encontrá
+                  Creá tu perfil, subí tu CV y currículum vitae, y encontrá
                   empleos que se ajusten a tu experiencia y habilidades
                   profesionales.
                 </p>
