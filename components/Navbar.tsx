@@ -17,8 +17,8 @@ export default function Navbar() {
               <Image
                 src="/logo.png"
                 alt="TrabajoYa - Portal de empleo Argentina"
-                width={80}
-                height={80}
+                width={60}
+                height={60}
                 priority
               />
             </Link>

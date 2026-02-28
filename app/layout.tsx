@@ -9,7 +9,7 @@ const inter = Inter({ subsets: ["latin"] });
 const SITE_URL = "https://web.trabajo-ya.com";
 const SITE_NAME = "TrabajoYa";
 const SITE_DESCRIPTION =
-  "Plataforma de empleo #1 en Argentina. Conectamos postulantes con empresas. Buscá trabajo, creá tu perfil profesional, subí tu CV y postulate a cientos de ofertas laborales en todo el país. Descargá la app gratis.";
+  "Conectamos postulantes con empresas. Buscá trabajo, creá tu perfil profesional, subí tu CV y postulate a cientos de ofertas laborales en todo el país. Descargá la app gratis.";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -117,7 +117,7 @@ export const metadata: Metadata = {
         url: "/logo.png",
         width: 512,
         height: 512,
-        alt: "TrabajoYa - Plataforma de empleo #1 en Argentina",
+        alt: "TrabajoYa - Portal de empleo Argentina",
         type: "image/png",
       },
     ],

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   title:
     "TrabajoYa - Buscar Trabajo en Argentina | Ofertas de Empleo 2026",
   description:
-    "Plataforma de empleo #1 en Argentina. Buscá trabajo, creá tu perfil profesional, subí tu CV y postulate a cientos de ofertas laborales. Encontrá empleo remoto, presencial o híbrido. Descargá la app gratis para Android e iOS.",
+    "Buscá trabajo, creá tu perfil profesional, subí tu CV y postulate a cientos de ofertas laborales. Encontrá empleo remoto, presencial o híbrido. Descargá la app gratis para Android e iOS.",
   alternates: {
     canonical: "https://web.trabajo-ya.com",
   },
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     title:
       "TrabajoYa - Buscar Trabajo en Argentina | Ofertas de Empleo",
     description:
-      "Plataforma de empleo #1 en Argentina. Buscá trabajo, creá tu perfil profesional y postulate a ofertas laborales. Empleo remoto, presencial e híbrido.",
+      "Buscá trabajo, creá tu perfil profesional y postulate a ofertas laborales. Empleo remoto, presencial e híbrido.",
     url: "https://web.trabajo-ya.com",
     type: "website",
   },
@@ -137,7 +137,7 @@ function JsonLd() {
     "@type": "WebPage",
     name: "TrabajoYa - Buscar Trabajo en Argentina",
     description:
-      "Plataforma de empleo #1 en Argentina. Conectamos postulantes con empresas.",
+      "Conectamos postulantes con empresas.",
     url: "https://web.trabajo-ya.com",
     isPartOf: {
       "@type": "WebSite",
@@ -233,25 +233,8 @@ export default function Home() {
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.trabajoya.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="bg-blue-600 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-blue-700 transition-colors text-center"
-                >
-                  Descargar app gratis
-                </a>
-                <Link
-                  href="/como-funciona"
-                  className="bg-white text-gray-800 border-2 border-gray-300 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors text-center"
-                >
-                  Ver cómo funciona
-                </Link>
-              </div>
 
-              {/* App Store Badges */}
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <div className="flex sm:flex-row gap-4 pt-4">
                 <a
                   href="https://play.google.com/store/apps/details?id=com.trabajoya.app"
                   target="_blank"
@@ -293,6 +276,18 @@ export default function Home() {
                   </div>
                 </a>
               </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+
+                <Link
+                  href="/como-funciona"
+                  className="bg-white text-gray-800 border-2 border-gray-300 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors text-center"
+                >
+                  Ver cómo funciona
+                </Link>
+              </div>
+
+              {/* App Store Badges */}
+
             </div>
 
             {/* Right Section - Phone Mockups */}
