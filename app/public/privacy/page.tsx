@@ -117,7 +117,7 @@ export default function PrivacyPolicyPage() {
             <div className="mb-6">
               <span className="text-sm text-gray-500 font-medium">Aviso legal</span>
             </div>
-            
+
             <h2 className="text-2xl font-bold text-gray-900 mb-6 uppercase tracking-wide">
               POLÍTICA DE PRIVACIDAD
             </h2>
@@ -227,8 +227,8 @@ export default function PrivacyPolicyPage() {
                   Solicitar Eliminación de Cuenta y Datos
                 </h3>
                 <p className="text-gray-700 mb-4 text-sm">
-                  Si deseas eliminar tu cuenta y todos los datos asociados, puedes solicitar la eliminación 
-                  de tus datos personales en cualquier momento. Esta acción es irreversible y eliminará 
+                  Si deseas eliminar tu cuenta y todos los datos asociados, puedes solicitar la eliminación
+                  de tus datos personales en cualquier momento. Esta acción es irreversible y eliminará
                   permanentemente tu cuenta, perfil, aplicaciones y todos los datos relacionados.
                 </p>
                 <a
@@ -316,83 +316,6 @@ export default function PrivacyPolicyPage() {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="bg-blue-900 text-white py-12">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-4 gap-8">
-            <div>
-              <h3 className="text-xl font-bold mb-4">TrabajoYa</h3>
-              <p className="text-gray-300">
-                Conectando talento con oportunidades.
-              </p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Legal</h4>
-              <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/public/terms"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Términos y Condiciones
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    href="/public/privacy"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    Política de Privacidad
-                  </Link>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Contacto</h4>
-              <ul className="space-y-2">
-                <li>
-                  <a
-                    href="mailto:soporte@trabajo-ya.com"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    soporte@trabajo-ya.com
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="mailto:privacidad@trabajoya.com"
-                    className="text-gray-300 hover:text-white transition-colors"
-                  >
-                    privacidad@trabajoya.com
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-4">Descargar</h4>
-              <div className="space-y-2">
-                <a
-                  href="https://play.google.com/store/apps/details?id=com.trabajoya.app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white block transition-colors"
-                >
-                  Android
-                </a>
-                <a
-                  href="https://apps.apple.com/app/trabajoya/id123456789"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white block transition-colors"
-                >
-                  iOS
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
