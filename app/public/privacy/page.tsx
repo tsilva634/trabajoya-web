@@ -232,7 +232,7 @@ export default function PrivacyPolicyPage() {
                   permanentemente tu cuenta, perfil, aplicaciones y todos los datos relacionados.
                 </p>
                 <a
-                  href="mailto:privacidad@trabajoya.com?subject=Solicitud de Eliminación de Cuenta y Datos&body=Estimado equipo de TrabajoYa,%0D%0A%0D%0ADeseo solicitar la eliminación de mi cuenta y todos los datos asociados.%0D%0A%0D%0APor favor, incluyo la siguiente información:%0D%0A- Email de la cuenta:%0D%0A- Nombre completo:%0D%0A- Motivo de la solicitud (opcional):%0D%0A%0D%0AEntiendo que esta acción es irreversible.%0D%0A%0D%0AAtentamente"
+                  href="mailto:legal@trabajo-ya.com?subject=Solicitud de Eliminación de Cuenta y Datos&body=Estimado equipo de TrabajoYa,%0D%0A%0D%0ADeseo solicitar la eliminación de mi cuenta y todos los datos asociados.%0D%0A%0D%0APor favor, incluyo la siguiente información:%0D%0A- Email de la cuenta:%0D%0A- Nombre completo:%0D%0A- Motivo de la solicitud (opcional):%0D%0A%0D%0AEntiendo que esta acción es irreversible.%0D%0A%0D%0AAtentamente"
                   className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
                 >
                   <svg
@@ -260,10 +260,10 @@ export default function PrivacyPolicyPage() {
                   </a>
                   {" "}o enviando un email directamente a{" "}
                   <a
-                    href="mailto:privacidad@trabajoya.com"
+                    href="mailto:legal@trabajo-ya.com"
                     className="text-blue-600 hover:text-blue-700 underline"
                   >
-                    privacidad@trabajoya.com
+                    legal@trabajo-ya.com
                   </a>
                 </p>
               </div>

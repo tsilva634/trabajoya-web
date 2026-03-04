@@ -15,18 +15,18 @@ function ContactJsonLd() {
       "@type": "Organization",
       name: "TrabajoYa",
       url: "https://web.trabajo-ya.com",
-      email: "soporte@trabajo-ya.com",
+      email: "atencion@trabajo-ya.com",
       contactPoint: [
         {
           "@type": "ContactPoint",
-          email: "soporte@trabajo-ya.com",
+          email: "atencion@trabajo-ya.com",
           contactType: "customer service",
           availableLanguage: ["Spanish", "English", "Portuguese"],
           areaServed: "AR",
         },
         {
           "@type": "ContactPoint",
-          email: "privacidad@trabajoya.com",
+          email: "legal@trabajo-ya.com",
           contactType: "privacy",
           availableLanguage: ["Spanish"],
           areaServed: "AR",
@@ -119,7 +119,7 @@ export default function ContactoPage() {
         `Mensaje:\n${formData.mensaje}`
       );
 
-      window.location.href = `mailto:soporte@trabajo-ya.com?subject=${subject}&body=${body}`;
+      window.location.href = `mailto:atencion@trabajo-ya.com?subject=${subject}&body=${body}`;
 
       // Simular envío exitoso
       setTimeout(() => {
@@ -134,7 +134,7 @@ export default function ContactoPage() {
         });
       }, 1000);
     } catch (err) {
-      setError('Hubo un error al enviar el formulario. Por favor, intenta nuevamente o envía un email directo a soporte@trabajo-ya.com');
+      setError('Hubo un error al enviar el formulario. Por favor, intenta nuevamente o envía un email directo a atencion@trabajo-ya.com');
       setLoading(false);
     }
   };
@@ -216,10 +216,10 @@ export default function ContactoPage() {
               </div>
               <h3 className="font-semibold text-gray-900 mb-2">Email</h3>
               <a
-                href="mailto:soporte@trabajo-ya.com"
+                href="mailto:atencion@trabajo-ya.com"
                 className="text-blue-600 hover:underline text-sm"
               >
-                soporte@trabajo-ya.com
+                atencion@trabajo-ya.com
               </a>
             </div>
 

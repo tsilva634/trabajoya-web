@@ -85,10 +85,10 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="mailto:privacidad@trabajo-ya.com"
+                  href="mailto:legal@trabajo-ya.com"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
-                  privacidad@trabajo-ya.com
+                  legal@trabajo-ya.com
                 </a>
               </li>
             </ul>
