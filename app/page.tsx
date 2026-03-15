@@ -277,13 +277,19 @@ export default function Home() {
                 </a>
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
-
+                <a
+                  href="https://empresas.trabajo-ya.com"
+                  className="inline-block bg-green-600 text-white p-4 rounded-lg font-semibold text-lg hover:bg-green-700 transition-colors text-center"
+                >
+                  Ir al portal de empresas
+                </a>
                 <Link
                   href="/como-funciona"
-                  className="bg-white text-gray-800 border-2 border-gray-300 px-8 py-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors text-center"
+                  className="bg-white text-gray-800 border-2 border-gray-300 p-4 rounded-lg font-semibold text-lg hover:bg-gray-50 transition-colors text-center"
                 >
                   Ver cómo funciona
                 </Link>
+
               </div>
 
               {/* App Store Badges */}
