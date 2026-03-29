@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import EmpresasPortalLink from '@/components/EmpresasPortalLink';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -50,12 +51,9 @@ export default function Navbar() {
             >
               Contacto
             </Link>
-            <a
-              href="https://empresas.trabajo-ya.com"
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors"
-            >
+            <EmpresasPortalLink className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors">
               Empresas
-            </a>
+            </EmpresasPortalLink>
           </div>
 
           {/* Mobile menu button */}
@@ -87,48 +85,51 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
-        {isOpen && (
-          <div id="mobile-menu" className="md:hidden" role="navigation" aria-label="Menú móvil">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              <Link
-                href="/"
-                className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Inicio
-              </Link>
-              <Link
-                href="/como-funciona"
-                className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Cómo funciona
-              </Link>
-              <Link
-                href="/soporte"
-                className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Ayuda
-              </Link>
-              <Link
-                href="/contacto"
-                className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Contacto
-              </Link>
-              <a
-                href="https://empresas.trabajo-ya.com"
-                className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
-                onClick={() => setIsOpen(false)}
-              >
-                Empresas
-              </a>
-            </div>
+        {/* Menú móvil siempre montado (hidden si cerrado) para no desmontar EmpresasPortalLink al abrir el modal */}
+        <div
+          id="mobile-menu"
+          className={`md:hidden border-t border-gray-100 ${!isOpen ? "hidden" : ""}`}
+          role="navigation"
+          aria-label="Menú móvil"
+          aria-hidden={!isOpen}
+        >
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+            <Link
+              href="/"
+              className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Inicio
+            </Link>
+            <Link
+              href="/como-funciona"
+              className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Cómo funciona
+            </Link>
+            <Link
+              href="/soporte"
+              className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Ayuda
+            </Link>
+            <Link
+              href="/contacto"
+              className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
+              onClick={() => setIsOpen(false)}
+            >
+              Contacto
+            </Link>
+            <EmpresasPortalLink
+              className="text-blue-900 hover:text-blue-700 block px-3 py-2 rounded-md text-base font-medium"
+              onMobileModalOpen={() => setIsOpen(false)}
+            >
+              Empresas
+            </EmpresasPortalLink>
           </div>
-        )}
+        </div>
       </div>
     </nav>
   );
