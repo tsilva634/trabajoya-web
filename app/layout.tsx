@@ -5,6 +5,7 @@ import ConditionalLayout from "@/components/ConditionalLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
+
 const SITE_URL = "https://web.trabajo-ya.com";
 const SITE_NAME = "TrabajoYa";
 const SITE_DESCRIPTION =
