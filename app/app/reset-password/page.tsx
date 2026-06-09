@@ -3,21 +3,25 @@
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
 import { Suspense, useState, useEffect } from 'react';
+import { AlertTriangle, CheckCircle2 } from 'lucide-react';
+import { LoadingSpinner } from '@/components/loading-spinner';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4000';
+
+const inputClassName =
+  "w-full rounded-lg border border-input bg-background px-3 py-3 pr-10 text-sm text-foreground shadow-sm outline-none transition-colors placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20";
 
 function ResetPasswordContent() {
   const searchParams = useSearchParams();
   const token = searchParams?.get('token');
 
-  // Prevenir navegación del navegador
   useEffect(() => {
-    const handlePopState = (e: PopStateEvent) => {
-      // Prevenir que el usuario navegue hacia atrás
+    const handlePopState = () => {
       window.history.pushState(null, '', window.location.href);
     };
 
-    // Agregar estado al historial para poder interceptar el botón atrás
     window.history.pushState(null, '', window.location.href);
     window.addEventListener('popstate', handlePopState);
 
@@ -45,19 +49,16 @@ function ResetPasswordContent() {
     e.preventDefault();
     setError(null);
 
-    // Validar que hay token
     if (!token) {
-      setError('Token de recuperación no válido. Por favor, solicita un nuevo enlace de recuperación.');
+      setError('Token de recuperación no válido. Por favor, solicitá un nuevo enlace de recuperación.');
       return;
     }
 
-    // Validar que las contraseñas coincidan
     if (password !== confirmPassword) {
       setError('Las contraseñas no coinciden');
       return;
     }
 
-    // Validar formato de contraseña
     const passwordError = validatePassword(password);
     if (passwordError) {
       setError(passwordError);
@@ -69,13 +70,8 @@ function ResetPasswordContent() {
     try {
       const response = await fetch(`${API_BASE_URL}/api/auth/reset-password`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          token,
-          password,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token, password }),
       });
 
       const data = await response.json();
@@ -85,253 +81,157 @@ function ResetPasswordContent() {
       }
 
       setSuccess(true);
-      // Redirigir al login de la app después de 2 segundos
       setTimeout(() => {
         window.location.href = 'trabajoya://auth/login';
       }, 2000);
-    } catch (err: any) {
-      setError(err.message || 'Error al restablecer la contraseña. El token puede haber expirado.');
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Error al restablecer la contraseña. El token puede haber expirado.';
+      setError(message);
     } finally {
       setIsLoading(false);
     }
   };
 
+  const PageWrapper = ({ children }: { children: React.ReactNode }) => (
+    <div className="relative flex min-h-screen items-center justify-center bg-background px-4 py-6">
+      <div className="absolute inset-x-0 top-0 flex h-1.5 w-full">
+        <div className="h-full flex-1 bg-primary" />
+        <div className="h-full flex-1 bg-background" />
+        <div className="h-full flex-1 bg-primary" />
+      </div>
+      <div className="w-full max-w-md rounded-2xl border border-border bg-card p-8 shadow-lg">
+        <div className="mb-6 flex justify-center">
+          <Image src="/icon-transparente.png" alt="TrabajoYa" width={80} height={80} className="object-contain" priority />
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+
   if (!token) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white px-4 py-6">
-        <div className="max-w-md w-full">
-          {/* Logo TrabajoYa */}
-          <div className="mb-6 flex justify-center">
-            <Image
-              src="/logo.png"
-              alt="TrabajoYa"
-              width={128}
-              height={128}
-              className="w-32 h-32 object-contain"
-              priority
-            />
+      <PageWrapper>
+        <div className="text-center">
+          <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-destructive/10">
+            <AlertTriangle className="size-6 text-destructive" />
           </div>
-
-          <div className="text-center">
-            <div className="mb-3 mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-red-100">
-              <svg
-                className="h-6 w-6 text-red-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-                />
-              </svg>
-            </div>
-            <h1 className="mb-2 text-left text-xl font-semibold text-gray-800">
-              Token Inválido
-            </h1>
-            <p className="mb-4 text-left text-sm text-gray-600">
-              El enlace de recuperación no es válido o ha expirado. Por favor, solicita un nuevo enlace de recuperación desde la aplicación.
-            </p>
-          </div>
+          <h1 className="mb-2 text-xl font-semibold text-foreground">Token inválido</h1>
+          <p className="text-sm text-muted-foreground">
+            El enlace de recuperación no es válido o ha expirado. Solicitá un nuevo enlace desde la aplicación.
+          </p>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 
   if (success) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-white px-4 py-6">
-        <div className="max-w-md w-full">
-          {/* Logo TrabajoYa */}
-          <div className="mb-6 flex justify-center">
-            <Image
-              src="/logo.png"
-              alt="TrabajoYa"
-              width={128}
-              height={128}
-              className="w-32 h-32 object-contain"
-              priority
-            />
+      <PageWrapper>
+        <div className="text-center">
+          <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/12">
+            <CheckCircle2 className="size-8 text-primary" />
           </div>
-
-          <div className="text-center">
-            <div className="mb-3 mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100">
-              <svg
-                className="h-8 w-8 text-[#2eb44f]"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
-            <h1 className="mb-2 text-left text-xl font-semibold text-gray-800">
-              ¡Contraseña Restablecida!
-            </h1>
-            <p className="mb-4 text-left text-sm text-gray-600">
-              Tu contraseña ha sido restablecida exitosamente. Serás redirigido al login en unos segundos.
-            </p>
-            <a
-              href="trabajoya://auth/login"
-              className="inline-block w-full rounded-full bg-[#1e3a8a] py-4 text-center text-sm font-semibold text-white shadow-lg hover:bg-[#1e40af] transition-colors"
-            >
-              Ir al login
-            </a>
-          </div>
+          <h1 className="mb-2 text-xl font-semibold text-foreground">¡Contraseña restablecida!</h1>
+          <p className="mb-6 text-sm text-muted-foreground">
+            Tu contraseña fue restablecida exitosamente. Serás redirigido al login en unos segundos.
+          </p>
+          <a
+            href="trabajoya://auth/login"
+            className={cn(buttonVariants({ size: "lg" }), "w-full bg-primary text-primary-foreground hover:bg-primary/90")}
+          >
+            Ir al login
+          </a>
         </div>
-      </div>
+      </PageWrapper>
     );
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white px-4 py-6">
-      <div className="max-w-md w-full">
-        {/* Logo TrabajoYa */}
-        <div className="mb-6 flex justify-center">
-          <Image
-            src="/logo.png"
-            alt="TrabajoYa"
-            width={128}
-            height={128}
-            className="w-32 h-32 object-contain"
-            priority
+    <PageWrapper>
+      <h1 className="mb-2 text-xl font-semibold text-foreground">Restablecer contraseña</h1>
+      <p className="mb-6 text-sm text-muted-foreground">
+        Ingresá tu nueva contraseña para completar el proceso
+      </p>
+
+      <form onSubmit={handleSubmit} className="space-y-3">
+        {error && (
+          <div className="rounded-lg border border-destructive/30 bg-destructive/10 px-3 py-2 text-xs text-destructive">
+            {error}
+          </div>
+        )}
+
+        <div className="relative">
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className={cn(
+              inputClassName,
+              error?.includes('contraseña') && !error.includes('coinciden') && "border-destructive"
+            )}
+            placeholder="Nueva contraseña"
+            required
+            disabled={isLoading}
           />
+          <button
+            type="button"
+            onClick={() => setShowPassword(!showPassword)}
+            className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+            disabled={isLoading}
+            aria-label={showPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
+          >
+            {showPassword ? 'Ocultar' : 'Ver'}
+          </button>
+          {password && (
+            <p className="mt-1 text-xs text-muted-foreground">Mínimo 8 caracteres</p>
+          )}
         </div>
 
-        {/* Título */}
-        <h1 className="mb-4 text-left text-xl font-semibold text-gray-800">
-          Restablecer Contraseña
-        </h1>
-
-        {/* Descripción */}
-        <p className="mb-4 text-left text-sm text-gray-600">
-          Ingresa tu nueva contraseña para completar el proceso
-        </p>
-
-        <form onSubmit={handleSubmit} className="space-y-3">
-          {error && (
-            <div className="mb-3 rounded-lg border border-red-200 bg-red-50 px-3 py-2 text-xs text-red-700">
-              {error}
-            </div>
-          )}
-
-          {/* Campo de nueva contraseña */}
-          <div className="relative">
-            <input
-              type={showPassword ? 'text' : 'password'}
-              id="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${error && error.includes('contraseña') && !error.includes('coinciden')
-                ? 'border-red-500'
-                : 'border-gray-300'
-                } bg-white`}
-              placeholder="Nueva contraseña"
-              required
-              disabled={isLoading}
-            />
-            <button
-              type="button"
-              onClick={() => setShowPassword(!showPassword)}
-              className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
-              disabled={isLoading}
-            >
-              {showPassword ? (
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                </svg>
-              ) : (
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              )}
-            </button>
-            {password && (
-              <p className="mt-1 text-xs text-gray-500">
-                Mínimo 8 caracteres
-              </p>
+        <div className="relative">
+          <input
+            type={showConfirmPassword ? 'text' : 'password'}
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            className={cn(
+              inputClassName,
+              error?.includes('coinciden') && "border-destructive"
             )}
-          </div>
-
-          {/* Campo de confirmar contraseña */}
-          <div className="relative">
-            <input
-              type={showConfirmPassword ? 'text' : 'password'}
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              className={`w-full rounded-lg border px-3 py-3 pr-10 text-sm text-gray-800 shadow-sm placeholder:text-gray-400 ${error && error.includes('coinciden')
-                ? 'border-red-500'
-                : 'border-gray-300'
-                } bg-white`}
-              placeholder="Confirmar contraseña"
-              required
-              disabled={isLoading}
-            />
-            <button
-              type="button"
-              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-              className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
-              disabled={isLoading}
-            >
-              {showConfirmPassword ? (
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21" />
-                </svg>
-              ) : (
-                <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                </svg>
-              )}
-            </button>
-          </div>
-
-          {/* Botón principal */}
+            placeholder="Confirmar contraseña"
+            required
+            disabled={isLoading}
+          />
           <button
-            type="submit"
-            disabled={!password || !confirmPassword || isLoading}
-            className="mb-4 w-full rounded-full bg-[#1e3a8a] py-4 text-sm font-semibold text-white shadow-lg disabled:opacity-50 hover:bg-[#1e40af] transition-colors"
+            type="button"
+            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            className="absolute right-3 top-3 text-muted-foreground hover:text-foreground"
+            disabled={isLoading}
+            aria-label={showConfirmPassword ? 'Ocultar contraseña' : 'Mostrar contraseña'}
           >
-            {isLoading ? (
-              <span className="flex items-center justify-center">
-                <svg className="mr-2 h-4 w-4 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                </svg>
-                Restableciendo...
-              </span>
-            ) : (
-              'Restablecer Contraseña'
-            )}
+            {showConfirmPassword ? 'Ocultar' : 'Ver'}
           </button>
+        </div>
 
-        </form>
-      </div>
-    </div>
+        <button
+          type="submit"
+          disabled={!password || !confirmPassword || isLoading}
+          className={cn(
+            buttonVariants({ size: "lg" }),
+            "mt-2 w-full bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-50"
+          )}
+        >
+          {isLoading ? 'Restableciendo...' : 'Restablecer contraseña'}
+        </button>
+      </form>
+    </PageWrapper>
   );
 }
 
 export default function ResetPasswordPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Cargando...</p>
-        </div>
-      </div>
-    }>
+    <Suspense fallback={<LoadingSpinner className="min-h-screen" />}>
       <ResetPasswordContent />
     </Suspense>
   );
 }
-

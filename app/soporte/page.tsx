@@ -2,12 +2,23 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import {
+  ChevronDown,
+  FileText,
+  HelpCircle,
+  Mail,
+  MessageSquare,
+  Shield,
+} from 'lucide-react';
+import { PageShell } from '@/components/page-shell';
+import { buttonVariants } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const faqs = [
   {
     id: 1,
     question: '¿Cómo me registro en TrabajoYa?',
-    answer: 'Para registrarte, descarga la app desde Google Play o App Store. Luego selecciona si eres postulante o empresa, completa tus datos y verifica tu email. ¡Es gratis y toma menos de 5 minutos!'
+    answer: 'Para registrarte, descargá la app desde Google Play o App Store. Luego seleccioná si sos postulante o empresa, completá tus datos y verificá tu email. ¡Es gratis y toma menos de 5 minutos!'
   },
   {
     id: 2,
@@ -17,47 +28,47 @@ const faqs = [
   {
     id: 3,
     question: '¿Cómo aplico a una oferta de empleo en TrabajoYa?',
-    answer: 'Busca empleos que te interesen usando los filtros disponibles (ubicación, modalidad, salario). Cuando encuentres uno, haz clic en "Aplicar" y tu perfil completo será enviado a la empresa. Puedes revisar el estado de tus aplicaciones en la sección "Mis Postulaciones".'
+    answer: 'Buscá empleos que te interesen usando los filtros disponibles (ubicación, modalidad, salario). Cuando encuentres uno, hacé clic en "Aplicar" y tu perfil completo será enviado a la empresa. Podés revisar el estado de tus aplicaciones en la sección "Mis Postulaciones".'
   },
   {
     id: 4,
     question: '¿Cómo puedo editar mi perfil profesional?',
-    answer: 'Ve a tu perfil desde el menú principal. Allí podrás editar tu información personal, experiencia laboral, educación, habilidades, agregar tu CV y video de presentación. Mantén tu perfil actualizado para mejorar tus oportunidades de conseguir empleo.'
+    answer: 'Andá a tu perfil desde el menú principal. Allí podrás editar tu información personal, experiencia laboral, educación, habilidades, agregar tu CV y video de presentación. Mantené tu perfil actualizado para mejorar tus oportunidades de conseguir empleo.'
   },
   {
     id: 5,
     question: '¿Puedo buscar empleos remotos en Argentina?',
-    answer: '¡Sí! Puedes filtrar los empleos por modalidad: remoto, híbrido o presencial. TrabajoYa te permite encontrar oportunidades laborales que se adapten a tus preferencias de trabajo en todo el país.'
+    answer: '¡Sí! Podés filtrar los empleos por modalidad: remoto, híbrido o presencial. TrabajoYa te permite encontrar oportunidades laborales que se adapten a tus preferencias de trabajo en todo el país.'
   },
   {
     id: 6,
     question: '¿Cómo publico una oferta de trabajo como empresa?',
-    answer: 'Si eres empresa, ve a tu dashboard y selecciona "Publicar Empleo". Completa todos los detalles de la vacante (título, descripción, requisitos, salario, modalidad) y publica. Las postulaciones llegarán directamente a tu dashboard de gestión.'
+    answer: 'Si sos empresa, andá a tu dashboard y seleccioná "Publicar Empleo". Completá todos los detalles de la vacante (título, descripción, requisitos, salario, modalidad) y publicá. Las postulaciones llegarán directamente a tu dashboard de gestión.'
   },
   {
     id: 7,
     question: '¿Cómo gestiono las postulaciones recibidas como empresa?',
-    answer: 'En tu dashboard de empresa verás todas las postulaciones recibidas. Puedes ver perfiles completos de los candidatos, CVs, videos de presentación y comunicarte directamente con ellos a través de mensajería integrada, llamadas y videollamadas.'
+    answer: 'En tu dashboard de empresa verás todas las postulaciones recibidas. Podés ver perfiles completos de los candidatos, CVs, videos de presentación y comunicarte directamente con ellos a través de mensajería integrada, llamadas y videollamadas.'
   },
   {
     id: 8,
     question: '¿Qué hago si olvidé mi contraseña?',
-    answer: 'En la pantalla de inicio de sesión, haz clic en "¿Olvidaste tu contraseña?". Ingresa tu email y recibirás un enlace para restablecer tu contraseña de forma segura. El proceso es gratuito.'
+    answer: 'En la pantalla de inicio de sesión, hacé clic en "¿Olvidaste tu contraseña?". Ingresá tu email y recibirás un enlace para restablecer tu contraseña de forma segura. El proceso es gratuito.'
   },
   {
     id: 9,
     question: '¿Cómo me comunico con las empresas o postulantes?',
-    answer: 'TrabajoYa tiene un sistema de mensajería integrado. Puedes enviar mensajes directamente desde la app. También puedes realizar llamadas de voz y videollamadas con los candidatos o empresas según tu plan de suscripción.'
+    answer: 'TrabajoYa tiene un sistema de mensajería integrado. Podés enviar mensajes directamente desde la app. También podés realizar llamadas de voz y videollamadas con los candidatos o empresas según tu plan de suscripción.'
   },
   {
     id: 10,
     question: '¿Mi información personal está segura en TrabajoYa?',
-    answer: 'Sí, en TrabajoYa protegemos tu privacidad. Toda la información está encriptada y solo las empresas a las que aplicas pueden ver tu perfil profesional. Consulta nuestra Política de Privacidad para más detalles sobre cómo protegemos tus datos.'
+    answer: 'Sí, en TrabajoYa protegemos tu privacidad. Toda la información está encriptada y solo las empresas a las que aplicás pueden ver tu perfil profesional. Consultá nuestra Política de Privacidad para más detalles sobre cómo protegemos tus datos.'
   },
   {
     id: 11,
     question: '¿En qué idiomas está disponible TrabajoYa?',
-    answer: 'TrabajoYa está disponible en Español, Inglés y Portugués. Puedes cambiar el idioma en la configuración de la app según tu preferencia.'
+    answer: 'TrabajoYa está disponible en Español, Inglés y Portugués. Podés cambiar el idioma en la configuración de la app según tu preferencia.'
   },
   {
     id: 12,
@@ -66,7 +77,6 @@ const faqs = [
   }
 ];
 
-// JSON-LD FAQPage Schema - renders server-side in the HTML
 function FaqJsonLd() {
   const faqSchema = {
     "@context": "https://schema.org",
@@ -74,10 +84,7 @@ function FaqJsonLd() {
     mainEntity: faqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
+      acceptedAnswer: { "@type": "Answer", text: faq.answer },
     })),
   };
 
@@ -85,235 +92,164 @@ function FaqJsonLd() {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Inicio",
-        item: "https://web.trabajo-ya.com",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Centro de Ayuda",
-        item: "https://web.trabajo-ya.com/soporte",
-      },
+      { "@type": "ListItem", position: 1, name: "Inicio", item: "https://web.trabajo-ya.com" },
+      { "@type": "ListItem", position: 2, name: "Centro de Ayuda", item: "https://web.trabajo-ya.com/soporte" },
     ],
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
     </>
   );
 }
 
+const quickLinks = [
+  {
+    href: '/como-funciona',
+    icon: HelpCircle,
+    title: 'Cómo funciona TrabajoYa',
+    description: 'Guía paso a paso para usar la plataforma',
+  },
+  {
+    href: '/contacto',
+    icon: MessageSquare,
+    title: 'Contacto',
+    description: 'Envianos tu consulta directamente',
+  },
+  {
+    href: '/public/terms',
+    icon: FileText,
+    title: 'Términos y Condiciones',
+    description: 'Consultá nuestros términos de uso',
+  },
+  {
+    href: '/public/privacy',
+    icon: Shield,
+    title: 'Política de Privacidad',
+    description: 'Cómo protegemos tus datos personales',
+  },
+];
+
 export default function SoportePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
-
-  const toggleFaq = (id: number) => {
-    setOpenFaq(openFaq === id ? null : id);
-  };
 
   return (
     <>
       <FaqJsonLd />
-      <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          {/* Header */}
-          <header className="text-center mb-12">
-            <div className="flex items-center justify-center mb-4">
-              <svg className="h-12 w-12 text-blue-600 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              <h1 className="text-4xl font-bold text-gray-900">
-                Centro de Ayuda TrabajoYa
-              </h1>
-            </div>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Encontrá respuestas a las preguntas más frecuentes sobre cómo buscar trabajo, publicar ofertas de empleo y usar TrabajoYa. Si no encontrás lo que buscás, contactános directamente.
-            </p>
-          </header>
-
-          {/* Breadcrumb */}
-          <nav aria-label="Breadcrumb" className="mb-8">
-            <ol className="flex items-center space-x-2 text-sm text-gray-500">
-              <li>
-                <Link href="/" className="hover:text-blue-600 transition-colors">Inicio</Link>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <span className="text-gray-900 font-medium">Centro de Ayuda</span>
-              </li>
-            </ol>
-          </nav>
-
-          {/* Contact Section */}
-          <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-            <div className="flex items-start gap-4">
-              <div className="flex-shrink-0">
-                <svg className="h-8 w-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <div className="flex-1">
-                <h2 className="text-xl font-semibold text-gray-900 mb-2">¿Necesitás más ayuda?</h2>
-                <p className="text-gray-600 mb-4">
-                  Si no encontrás la respuesta que buscás, nuestro equipo de soporte está disponible para ayudarte con cualquier consulta sobre empleo y uso de la plataforma.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="mailto:soporte@trabajo-ya.com"
-                    className="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
-                  >
-                    <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    Enviar Email
-                  </a>
-                  <Link
-                    href="/contacto"
-                    className="inline-flex items-center justify-center px-4 py-2 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-50 transition-colors"
-                  >
-                    <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                    Formulario de Contacto
-                  </Link>
-                </div>
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-600">
-                    <strong>Email de soporte:</strong>{' '}
-                    <a href="mailto:soporte@trabajo-ya.com" className="text-blue-600 hover:underline">
-                      soporte@trabajo-ya.com
-                    </a>
-                  </p>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Nuestro equipo responderá en un plazo máximo de 24-48 horas hábiles.
-                  </p>
-                </div>
-              </div>
-            </div>
+      <PageShell
+        maxWidth="4xl"
+        breadcrumbs={[{ label: 'Inicio', href: '/' }, { label: 'Centro de ayuda' }]}
+      >
+        <header className="mb-12 text-center">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <HelpCircle className="size-10 text-primary" aria-hidden="true" />
+            <h1 className="text-4xl font-bold text-foreground">
+              Centro de ayuda TrabajoYa
+            </h1>
           </div>
+          <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            Encontrá respuestas a las preguntas más frecuentes sobre cómo buscar trabajo,
+            publicar ofertas de empleo y usar TrabajoYa.
+          </p>
+        </header>
 
-          {/* FAQ Section */}
-          <section aria-label="Preguntas frecuentes">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-              <h2 className="text-2xl font-semibold text-gray-900 mb-6">Preguntas Frecuentes sobre TrabajoYa</h2>
-
-              <div className="space-y-4">
-                {faqs.map((faq) => (
-                  <div
-                    key={faq.id}
-                    className="border border-gray-200 rounded-lg overflow-hidden"
-                  >
-                    <h3>
-                      <button
-                        onClick={() => toggleFaq(faq.id)}
-                        className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors"
-                        aria-expanded={openFaq === faq.id}
-                        aria-controls={`faq-answer-${faq.id}`}
-                      >
-                        <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
-                        <svg
-                          className={`h-5 w-5 text-gray-500 flex-shrink-0 transition-transform ${openFaq === faq.id ? 'transform rotate-180' : ''
-                            }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                          aria-hidden="true"
-                        >
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </button>
-                    </h3>
-                    {openFaq === faq.id && (
-                      <div
-                        id={`faq-answer-${faq.id}`}
-                        className="px-6 py-4 bg-gray-50 border-t border-gray-200"
-                        role="region"
-                        aria-labelledby={`faq-question-${faq.id}`}
-                      >
-                        <p className="text-gray-700 leading-relaxed">{faq.answer}</p>
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+        <div className="mb-8 rounded-2xl border border-border bg-card p-6 shadow-sm">
+          <div className="flex items-start gap-4">
+            <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-primary/12">
+              <Mail className="size-6 text-primary" />
             </div>
-          </section>
-
-          {/* Quick Links */}
-          <section aria-label="Enlaces útiles">
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-xl font-semibold text-gray-900 mb-4">Enlaces Útiles</h2>
-              <div className="grid md:grid-cols-2 gap-4">
-                <Link
-                  href="/como-funciona"
-                  className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+            <div className="flex-1">
+              <h2 className="mb-2 text-xl font-semibold text-foreground">¿Necesitás más ayuda?</h2>
+              <p className="mb-4 text-muted-foreground">
+                Si no encontrás la respuesta que buscás, nuestro equipo de soporte está disponible para ayudarte.
+              </p>
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <a
+                  href="mailto:soporte@trabajo-ya.com"
+                  className={cn(buttonVariants({ size: "lg" }), "bg-primary text-primary-foreground hover:bg-primary/90")}
                 >
-                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                  <div>
-                    <div className="font-semibold text-gray-900">Cómo funciona TrabajoYa</div>
-                    <div className="text-sm text-gray-600">Guía paso a paso para usar la plataforma</div>
-                  </div>
-                </Link>
+                  Enviar email
+                </a>
                 <Link
                   href="/contacto"
-                  className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                  className={cn(buttonVariants({ size: "lg", variant: "outline" }), "border-border")}
                 >
-                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                  </svg>
-                  <div>
-                    <div className="font-semibold text-gray-900">Contacto</div>
-                    <div className="text-sm text-gray-600">Envíanos tu consulta directamente</div>
-                  </div>
-                </Link>
-                <Link
-                  href="/public/terms"
-                  className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  <div>
-                    <div className="font-semibold text-gray-900">Términos y Condiciones</div>
-                    <div className="text-sm text-gray-600">Consulta nuestros términos de uso</div>
-                  </div>
-                </Link>
-                <Link
-                  href="/public/privacy"
-                  className="flex items-center gap-3 p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <svg className="h-6 w-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                  <div>
-                    <div className="font-semibold text-gray-900">Política de Privacidad</div>
-                    <div className="text-sm text-gray-600">Cómo protegemos tus datos personales</div>
-                  </div>
+                  Formulario de contacto
                 </Link>
               </div>
+              <p className="mt-4 border-t border-border pt-4 text-sm text-muted-foreground">
+                <strong className="text-foreground">Email de soporte:</strong>{' '}
+                <a href="mailto:soporte@trabajo-ya.com" className="text-primary hover:underline">
+                  soporte@trabajo-ya.com
+                </a>
+                <span className="mt-1 block">Respondemos en un plazo máximo de 24-48 horas hábiles.</span>
+              </p>
             </div>
-          </section>
-
-          {/* Footer */}
-          <div className="text-center text-gray-600 border-t pt-8 mt-8">
-            <Link href="/" className="text-blue-600 hover:underline">
-              ← Volver al inicio
-            </Link>
           </div>
         </div>
-      </div>
+
+        <section className="mb-8" aria-label="Preguntas frecuentes">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-6 text-2xl font-semibold text-foreground">
+              Preguntas frecuentes
+            </h2>
+            <div className="space-y-3">
+              {faqs.map((faq) => (
+                <div key={faq.id} className="overflow-hidden rounded-xl border border-border">
+                  <h3>
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
+                      className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-secondary/60"
+                      aria-expanded={openFaq === faq.id}
+                      aria-controls={`faq-answer-${faq.id}`}
+                    >
+                      <span className="pr-4 font-semibold text-foreground">{faq.question}</span>
+                      <ChevronDown
+                        className={cn(
+                          "size-5 shrink-0 text-muted-foreground transition-transform",
+                          openFaq === faq.id && "rotate-180"
+                        )}
+                      />
+                    </button>
+                  </h3>
+                  {openFaq === faq.id && (
+                    <div
+                      id={`faq-answer-${faq.id}`}
+                      className="border-t border-border bg-secondary/40 px-6 py-4"
+                    >
+                      <p className="leading-relaxed text-muted-foreground">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section aria-label="Enlaces útiles">
+          <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <h2 className="mb-4 text-xl font-semibold text-foreground">Enlaces útiles</h2>
+            <div className="grid gap-4 md:grid-cols-2">
+              {quickLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="flex items-center gap-3 rounded-xl border border-border p-4 transition-colors hover:bg-secondary/60"
+                >
+                  <link.icon className="size-6 shrink-0 text-primary" />
+                  <div>
+                    <div className="font-semibold text-foreground">{link.title}</div>
+                    <div className="text-sm text-muted-foreground">{link.description}</div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      </PageShell>
     </>
   );
 }

@@ -1,8 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import ConditionalNavbar from "@/components/ConditionalNavbar";
-import Footer from "@/components/Footer";
+import ConditionalLayout from "@/components/ConditionalLayout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,7 +14,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#2563EB",
+  themeColor: "#6BB8E8",
 };
 
 export const metadata: Metadata = {
@@ -170,9 +169,7 @@ export default function RootLayout({
         <meta name="revisit-after" content="3 days" />
       </head>
       <body className={inter.className}>
-        <ConditionalNavbar />
-        <main id="main-content">{children}</main>
-        <Footer />
+        <ConditionalLayout>{children}</ConditionalLayout>
       </body>
     </html>
   );
