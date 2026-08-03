@@ -46,7 +46,7 @@ export function JobTypes() {
                             key={job.title}
                             className="flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-primary/50"
                         >
-                            <span className="flex size-11 items-center justify-center rounded-xl bg-accent-muted text-accent-foreground">
+                            <span className="flex size-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
                                 <job.icon className="size-5" />
                             </span>
                             <h3 className="text-lg font-semibold text-card-foreground">

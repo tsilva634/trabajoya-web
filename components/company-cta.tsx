@@ -41,7 +41,7 @@ export function CompanyCta() {
                                     key={benefit}
                                     className="flex items-start gap-3 rounded-xl bg-white/10 p-4"
                                 >
-                                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground">
+                                    <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-white text-primary">
                                         <Check className="size-4" />
                                     </span>
                                     <span className="text-primary-foreground">{benefit}</span>

@@ -1,24 +1,26 @@
 import Image from "next/image"
 import Link from "next/link"
-import { Trophy, ArrowRight, Play } from "lucide-react"
+import { ArrowRight, Play, Sparkles } from "lucide-react"
 import { buttonVariants } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export function Hero() {
     return (
-        <section className="relative overflow-hidden bg-white">
-            {/* Top accent stripes - bandera argentina */}
-            <div className="absolute inset-x-0 top-0 flex h-1.5 w-full">
-                <div className="h-full flex-1 bg-primary" />
-                <div className="h-full flex-1 bg-background" />
-                <div className="h-full flex-1 bg-primary" />
+        <section className="relative overflow-hidden bg-gradient-to-b from-secondary/60 to-white">
+            <div
+                className="pointer-events-none absolute inset-0 -z-10"
+                aria-hidden="true"
+            >
+                <div className="absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 opacity-60 animate-[float_8s_ease-in-out_infinite]" />
+                <div className="absolute left-[10%] top-[20%] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 opacity-40 animate-[float_6s_ease-in-out_infinite_reverse]" />
+                <div className="absolute left-[85%] top-[80%] h-[300px] w-[300px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/10 opacity-50 animate-[float_10s_ease-in-out_infinite]" />
             </div>
 
             <div className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-16 lg:grid-cols-2 lg:py-24">
                 <div className="flex flex-col items-start gap-6">
-                    <span className="inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-muted px-4 py-1.5 text-sm font-semibold text-accent-foreground">
-                        <Trophy className="size-4" />
-                        Alentamos a la Selección y a tu carrera
+                    <span className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm font-semibold text-secondary-foreground">
+                        <Sparkles className="size-4 text-primary" />
+                        Empleo simple, rápido y digital
                     </span>
 
                     <h1 className="text-balance text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl lg:text-6xl">
@@ -29,9 +31,9 @@ export function Hero() {
                     <p className="max-w-xl text-pretty text-lg leading-relaxed text-muted-foreground">
                         La plataforma de empleo que conecta personas y empresas de forma
                         simple, rápida y 100% digital. Encontrá ofertas laborales,
-                        postulate con un click y conseguí tu próximo empleo mientras
-                        alentamos a la Selección.
+                        postulate con un click y conseguí tu próximo empleo.
                     </p>
+
                     <div className="flex sm:flex-row gap-4 pt-4">
                         <a
                             href="https://play.google.com/store/apps/details?id=com.trabajoya.app"
@@ -97,42 +99,38 @@ export function Hero() {
                             Ver cómo funciona
                         </Link>
                     </div>
-
-                    {/* <dl className="mt-4 grid grid-cols-3 gap-6 border-t border-border/60 pt-6">
-                        <div>
-                            <dt className="text-2xl font-bold text-foreground">5 min</dt>
-                            <dd className="text-sm text-muted-foreground">Para registrarte</dd>
-                        </div>
-                        <div>
-                            <dt className="text-2xl font-bold text-foreground">+50k</dt>
-                            <dd className="text-sm text-muted-foreground">Ofertas activas</dd>
-                        </div>
-                    </dl> */}
                 </div>
 
-                <div className="relative">
-                    <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl shadow-2xl ring-1 ring-border">
-                        <Image
-                            src="/hero-argentina-mundial.png"
-                            alt="Profesionales argentinos celebrando con banderas celeste y blanca, acompañando el Mundial"
-                            fill
-                            priority
-                            className="object-cover"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-foreground/30 via-transparent to-transparent" />
-                    </div>
+                <div className="relative flex items-center justify-center">
+                    <div className="flex gap-4 relative z-10">
+                        <div className="relative">
+                            <div className="rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
+                                <div className="overflow-hidden rounded-[2rem] bg-gray-900">
+                                    <Image
+                                        src="/tel1.png"
+                                        alt="TrabajoYa app - Pantalla de búsqueda de empleos"
+                                        className="rounded-[1.8rem] object-cover"
+                                        width={180}
+                                        height={380}
+                                        priority
+                                    />
+                                </div>
+                            </div>
+                        </div>
 
-                    <div className="absolute -bottom-5 -left-5 hidden items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 shadow-lg sm:flex">
-                        <span className="flex size-10 items-center justify-center rounded-lg bg-accent-soft text-accent-foreground">
-                            <Trophy className="size-5" />
-                        </span>
-                        <div>
-                            <p className="text-sm font-semibold text-card-foreground">
-                                Vamos Argentina
-                            </p>
-                            <p className="text-xs text-muted-foreground">
-                                Tu próximo empleo, hoy
-                            </p>
+                        <div className="relative mt-8">
+                            <div className="rounded-[2.5rem] bg-gray-900 p-2 shadow-2xl">
+                                <div className="overflow-hidden rounded-[2rem] bg-gray-900">
+                                    <Image
+                                        src="/tel2.png"
+                                        alt="TrabajoYa app - Pantalla de perfil profesional"
+                                        className="rounded-[1.8rem] object-cover"
+                                        width={180}
+                                        height={380}
+                                        priority
+                                    />
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

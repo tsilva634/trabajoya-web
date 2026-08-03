@@ -176,8 +176,8 @@ export default function ContactoPage() {
           </div>
 
           <div className="rounded-2xl border border-border bg-card p-6 text-center shadow-sm">
-            <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-accent-muted">
-              <Clock className="size-6 text-accent-foreground" />
+            <div className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-primary/10">
+              <Clock className="size-6 text-primary" />
             </div>
             <h3 className="mb-2 font-semibold text-foreground">Tiempo de respuesta</h3>
             <p className="text-sm text-muted-foreground">24-48 horas hábiles</p>

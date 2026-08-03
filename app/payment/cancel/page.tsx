@@ -36,8 +36,8 @@ export default function PaymentCancelPage() {
   return (
     <RedirectCard
       icon={XCircle}
-      iconClassName="text-accent-foreground"
-      iconBgClassName="bg-accent-muted"
+      iconClassName="text-destructive"
+      iconBgClassName="bg-destructive/10"
       title="Pago cancelado"
       description="Cancelaste el proceso de pago. Redirigiendo a la aplicación..."
       countdown={countdown}

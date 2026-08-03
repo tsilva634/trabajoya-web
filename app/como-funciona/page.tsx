@@ -6,7 +6,7 @@ import {
   Briefcase,
   ClipboardList,
   Headphones,
-  Trophy,
+  Sparkles,
 } from "lucide-react"
 import { PageShell } from "@/components/page-shell"
 import { buttonVariants } from "@/components/ui/button"
@@ -168,8 +168,8 @@ export default function ComoFuncionaPage() {
         ]}
       >
         <section className="mb-12 text-center">
-          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-accent-border bg-accent-muted px-4 py-1.5 text-sm font-semibold text-accent-foreground">
-            <Trophy className="size-4" />
+          <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-1.5 text-sm font-semibold text-secondary-foreground">
+            <Sparkles className="size-4 text-primary" />
             Simple, rápido y 100% digital
           </span>
           <h1 className="text-balance text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">

@@ -19,28 +19,28 @@
 }
 
 :root {
-  /* TrabajoYa - paleta celeste/blanco/dorado argentino */
-  --background: oklch(0.99 0.005 230);
-  --foreground: oklch(0.2 0.04 250);
+  /* TrabajoYa - paleta de marca azul */
+  --background: oklch(0.99 0.005 255);
+  --foreground: oklch(0.22 0.04 255);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0.04 250);
+  --card-foreground: oklch(0.22 0.04 255);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0.04 250);
-  --primary: oklch(0.7 0.13 230);
-  --primary-foreground: oklch(0.99 0.005 230);
-  --secondary: oklch(0.95 0.02 230);
-  --secondary-foreground: oklch(0.3 0.06 250);
-  --muted: oklch(0.96 0.01 230);
-  --muted-foreground: oklch(0.5 0.03 250);
-  --accent: oklch(0.82 0.13 85);
-  --accent-foreground: oklch(0.28 0.05 80);
-  --accent-muted: oklch(0.82 0.13 85 / 0.15);
-  --accent-border: oklch(0.82 0.13 85 / 0.4);
-  --accent-soft: oklch(0.82 0.13 85 / 0.2);
+  --popover-foreground: oklch(0.22 0.04 255);
+  --primary: oklch(0.55 0.2 255);
+  --primary-foreground: oklch(0.99 0.005 255);
+  --secondary: oklch(0.95 0.025 255);
+  --secondary-foreground: oklch(0.3 0.06 255);
+  --muted: oklch(0.96 0.01 255);
+  --muted-foreground: oklch(0.5 0.03 255);
+  --accent: oklch(0.55 0.2 255);
+  --accent-foreground: oklch(0.99 0.005 255);
+  --accent-muted: oklch(0.55 0.2 255 / 0.12);
+  --accent-border: oklch(0.55 0.2 255 / 0.3);
+  --accent-soft: oklch(0.55 0.2 255 / 0.18);
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.02 230);
-  --input: oklch(0.9 0.02 230);
-  --ring: oklch(0.7 0.13 230);
+  --border: oklch(0.9 0.02 255);
+  --input: oklch(0.9 0.02 255);
+  --ring: oklch(0.55 0.2 255);
   --radius: 0.625rem;
   --radius-md: calc(var(--radius) * 0.8);
 }
