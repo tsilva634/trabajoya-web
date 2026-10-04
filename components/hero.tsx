@@ -34,9 +34,9 @@ export function Hero() {
                         postulate con un click y conseguí tu próximo empleo.
                     </p>
 
-                    <div className="flex w-fit flex-col items-center gap-2 pt-2">
+                    <div className="flex w-full max-w-sm flex-col items-stretch gap-3 pt-2 sm:w-fit sm:max-w-none">
                         <div
-                            className="flex flex-col items-center gap-0.5"
+                            className="flex flex-col items-center gap-0.5 self-center"
                             aria-hidden="true"
                         >
                             <span className="text-2xl font-black uppercase tracking-[0.2em] text-red-600 drop-shadow-sm animate-[download-pulse_1.6s_ease-in-out_infinite] sm:text-3xl">
@@ -50,7 +50,7 @@ export function Hero() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Descargar TrabajoYa en Google Play"
-                                className="flex w-fit items-center gap-2 rounded-lg bg-black px-4 py-3 text-white transition-colors hover:bg-gray-800 sm:gap-3 sm:px-6"
+                                className="flex min-h-[52px] flex-1 items-center gap-2 rounded-lg bg-black px-4 py-3 text-white transition-colors hover:bg-gray-800 sm:flex-none sm:gap-3 sm:px-6"
                             >
                                 <svg
                                     className="h-6 w-6 shrink-0"
@@ -74,7 +74,7 @@ export function Hero() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label="Descargar TrabajoYa en App Store"
-                                className="flex w-fit items-center gap-2 rounded-lg bg-black px-4 py-3 text-white transition-colors hover:bg-gray-800 sm:gap-3 sm:px-6"
+                                className="flex min-h-[52px] flex-1 items-center gap-2 rounded-lg bg-black px-4 py-3 text-white transition-colors hover:bg-gray-800 sm:flex-none sm:gap-3 sm:px-6"
                             >
                                 <svg
                                     className="h-7 w-7 shrink-0 sm:h-8 sm:w-8"
@@ -94,29 +94,28 @@ export function Hero() {
                                 </div>
                             </a>
                         </div>
-                    </div>
-
-                    <div className="flex flex-col gap-3 sm:flex-row">
-                        <a
-                            href="https://empresas.trabajo-ya.com"
-                            className={cn(
-                                buttonVariants({ size: "lg" }),
-                                "bg-primary text-primary-foreground hover:bg-primary/90"
-                            )}
-                        >
-                            Ir al portal de empresas
-                            <ArrowRight className="size-4" />
-                        </a>
-                        <Link
-                            href="#como-funciona"
-                            className={cn(
-                                buttonVariants({ size: "lg", variant: "outline" }),
-                                "border-border bg-transparent text-foreground hover:bg-secondary"
-                            )}
-                        >
-                            <Play className="size-4" />
-                            Ver cómo funciona
-                        </Link>
+                        <div className="flex w-full flex-col gap-3 sm:flex-row">
+                            <a
+                                href="https://empresas.trabajo-ya.com"
+                                className={cn(
+                                    buttonVariants({ size: "lg" }),
+                                    "h-auto min-h-[52px] w-full justify-center whitespace-normal rounded-lg bg-primary px-5 py-3 text-center text-sm font-semibold text-primary-foreground hover:bg-primary/90 sm:flex-1"
+                                )}
+                            >
+                                Ir al portal de empresas
+                                <ArrowRight className="size-4" />
+                            </a>
+                            <Link
+                                href="#como-funciona"
+                                className={cn(
+                                    buttonVariants({ size: "lg", variant: "outline" }),
+                                    "h-auto min-h-[52px] w-full justify-center whitespace-normal rounded-lg border-border bg-transparent px-5 py-3 text-center text-sm font-semibold text-foreground hover:bg-secondary sm:flex-1"
+                                )}
+                            >
+                                <Play className="size-4" />
+                                Ver cómo funciona
+                            </Link>
+                        </div>
                     </div>
                 </div>
 
